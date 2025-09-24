@@ -25,3 +25,12 @@ This is the web page or web development in which me and my buddy will build.
 
 ### [Note] we won't worry about making it responsive cause we can worry about it later
 
+
+
+
+
+Mr.R - yupe and the design is good, baki mein dekhunga agar change karna hua toh design mein time toh lagega mujhe,
+        but i am on!!.
+
+        But 1 last question tumhara kaam kya hoga like tum meri iss webpage ko banane mein help karoge ke backend dekhoge.
+
