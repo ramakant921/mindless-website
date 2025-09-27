@@ -1,0 +1,51 @@
+* {
+    /* Reset Default Styling (cause it's always a trouble) */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* something to do with box model (margin, padding, size) */
+}
+
+body {
+    background: #1e1e1e;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.block {
+    background: #000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.block h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* if the content overflow we are scrolling so the header also scrolls so figure that out */
+.section {
+    background: #2c2c2c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    max-height: 25vh;
+    overflow: scroll; 
+}
+
+.section h3 {
+    font-size: 18px;
+}
+
+.blocks {
+    background: #111;
+    padding: 6px 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
