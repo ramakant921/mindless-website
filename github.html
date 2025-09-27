@@ -1,124 +1,28 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <title>GitHub Widget</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #000000;
-      color: #c9d1d9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
     .widget {
-      background: #161b22;
-      padding: 20px;
-      border-radius: 12px;
-      width: 350px;
-      overflow-y: auto;
-      max-height: 90vh;
-    }
-    .widget img {
-      border-radius: 50%;
-      width: 100px;
-      margin-bottom: 10px;
-    }
-    .widget h2 {
-      margin: 10px 0 5px;
-      font-size: 20px;
-      color: #fff;
-    }
-    .widget p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #8b949e;
-    }
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 15px;
-    }
-    .stats div {
-      text-align: center;
-    }
-    .stats strong {
-      display: block;
-      font-size: 16px;
-      color: #58a6ff;
-    }
-    .repos {
-      margin-top: 20px;
-      text-align: left;
-    }
-    .repos h3 {
-      font-size: 16px;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .repo {
-      background: #21262d;
-      padding: 10px;
+      width: 300px;
+      height: 500px;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      margin-bottom: 10px;
+      display: flex;
+      background-color: #000000;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
     }
-    .repo a {
-      color: #58a6ff;
-      text-decoration: none;
-      font-weight: bold;
+    .heading {
+      font-size: 25px;
+      vertical-align: top;
+      margin-right: 32px;
     }
-    .repo p {
-      font-size: 13px;
-      margin: 5px 0;
-    }
-    .repo span {
-      font-size: 12px;
-      color: #8b949e;
-      margin-right: 10px;
-    }
+
   </style>
-</head>
 <body>
-  <div class="widget" id="github-widget">
+  <div class="widget">
+    <p class="heading">Github Stats</p>
   </div>
-
-  <script>
-    async function loadGitHub(username) {
-      const profileRes = await fetch(`https://api.github.com/users/${username}`);
-      const profile = await profileRes.json();
-
-      const repoRes = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
-      const repos = await repoRes.json();
-
-      const widget = document.getElementById("github-widget");
-      widget.innerHTML = `
-        <img src="${profile.avatar_url}" alt="${profile.login}">
-        <h2>${profile.name || profile.login}</h2>
-        <p>${profile.bio || ""}</p>
-        <div class="stats">
-          <div><strong>${profile.public_repos}</strong>Repos</div>
-          <div><strong>${profile.followers}</strong>Followers</div>
-          <div><strong>${profile.following}</strong>Following</div>
-        </div>
-        <p>
-            <a href="${profile.html_url}" target="_blank"            style="color:#58a6ff;">View Profile</a>
-        </p>
-        <div class="repos">
-          <h3>Latest Repositories</h3>
-          ${repos.map(repo => `
-            <div class="repo">
-              <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-              <p>${repo.description || "No description"}</p>
-              <span>⭐ ${repo.stargazers_count}</span>
-              <span>🍴 ${repo.forks_count}</span>
-              <span>💻 ${repo.language || "N/A"}</span>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-    loadGitHub("Z-alos");
-  </script>
 </body>
 </html>
