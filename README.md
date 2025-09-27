@@ -6,13 +6,11 @@
 - Install npm Packages
 ```
 npm install
-
 ```
 - Run The Server
 ```
 cd src/backend
 node index.js
-
 ```
 ### frontend 
 - just open the main html file in the browser
