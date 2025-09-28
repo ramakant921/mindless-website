@@ -1,6 +1,7 @@
 // Packages
 import express from 'express';
 import cors from 'cors';
+import nodemon from 'nodemon'; // dev dependency, auto restarts server on file changes
 // Modules
 import { getCurrentTrack } from "./spotify.js";
 import { getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
@@ -57,4 +58,6 @@ app.get('/github/inbox', (req, res) => {
 const port = 3000; // this is the port where our server will run
 app.listen(port, () => {
     console.log(`Server Listening Like Google, Meta on port ${port}`);
+    console.log(`http://localhost:${port}`);
+    console.log(`http://localhost:${port}/spotify/currentTrack`); // endpoint to get current track
 });

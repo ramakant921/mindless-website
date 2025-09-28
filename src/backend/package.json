@@ -1,0 +1,28 @@
+{
+  "name": "mindless-website",
+  "version": "1.0.0",
+  "description": "This is the web page or web development in which me and my buddy will build.",
+  "main": "nodemon index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramakant921/mindless-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ramakant921/mindless-website/issues"
+  },
+  "homepage": "https://github.com/ramakant921/mindless-website#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "octokit": "^5.0.3"
+  }
+}
