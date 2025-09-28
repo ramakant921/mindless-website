@@ -4,25 +4,38 @@
   <meta charset="UTF-8">
   <title>Github Widget</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/spotify.css">
   <script defer src="./js/brain.js"></script>
 </head>
 <body>
-  <div class="block">
-    <h2>Github Stats</h2>
-
-    <div id="github-repo" class="section">
-      <h3>📚 Latest Repositories</h3>
+    <!-- Spotify Widget -->
+    <div class="widget-wrapper">
+    <div class="widget">
+        <div id="spotify-widget" class="widget-content">
+            <h1 class="widget-title">Spotify</h1>
+            <p id="now-playing" >Now Playing</p>
+            <div id="cover-wrapper"></div>
+        </div>
+    </div>
     </div>
 
-    <div id="github-fork" class="section">
-      <h3>💡 Forked Repositories</h3>
-      <div class="blocks">UwU</div>
-      <div class="blocks">deez nuts</div>
-    </div>
+    <!-- Github Widget -->
+    <div class="block">
+        <h2>Github Stats</h2>
 
-    <div id="github-inbox" class="section">
-      <h3>📬 Inbox</h3>
+        <div id="github-repo" class="section">
+            <h3>📚 Latest Repositories</h3>
+        </div>
+
+        <div id="github-fork" class="section">
+            <h3>💡 Forked Repositories</h3>
+            <div class="blocks">UwU</div>
+            <div class="blocks">deez nuts</div>
+        </div>
+
+        <div id="github-inbox" class="section">
+            <h3>📬 Inbox</h3>
+        </div>
     </div>
-  </div>
 </body>
 </html>

@@ -2,9 +2,6 @@ import axios from "axios";
 import dotenv from 'dotenv'; // load .env to access our tokens 
 dotenv.config();
 
-// Mr. R add your github personal access token in a file named .env file (it won't get pushed to github so keep your token safe)
-// Syntax for .evn file: GITHUB_TOKEN='your_token' that's it
-// you can generate it on the github website under settings > developer settigs > PAT
 const token = process.env.GITHUB_TOKEN;
 
 console.log(token);
@@ -52,8 +49,6 @@ export async function getGithubInbox() {
             repo: notification.repository.full_name
         };
     });
-
-    res.data.map(notification => console.log(notification))
 
   return notifications || null;
 }

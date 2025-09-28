@@ -1,12 +1,18 @@
 console.log("Never Gonna Give You Up...");
 
-// fetch('http://localhost:3000/spotify/currentTrack', {
-//     method: 'GET',
-// })
-// .then(res => res.json())
-// .then(track => {
-//     console.log(track);
-// });
+fetch('http://localhost:3000/spotify/currentTrack', {
+    method: 'GET',
+})
+.then(res => res.json())
+.then(track => {
+    console.log(track);
+    displayCurrentTrack(track);
+});
+
+document.getElementById("github-fork").onclick = () => {
+  window.location.href = "http://localhost:3000/spotify/login";
+};
+
 
 fetch('http://localhost:3000/github/repos', {
     method: 'GET',
@@ -83,4 +89,27 @@ function listInbox(inbox) {
         // append block to github-inbox section
         section.appendChild(block);
     })
+}
+
+function displayCurrentTrack(track) {
+    const widget = document.getElementById("spotify-widget");
+    const coverWrapper = document.getElementById("cover-wrapper");
+
+    const cover = document.createElement("img");
+    cover.id = "spotify-cover";
+    cover.src = track.image
+
+    const trackName = document.createElement("p");
+    trackName.id = "track";
+    trackName.innerText = track.name;
+
+    const artist = document.createElement("p");
+    artist.id = "artist";
+    artist.innerText = track.artist;
+
+    coverWrapper.appendChild(cover);
+
+    widget.appendChild(coverWrapper);
+    widget.appendChild(trackName);
+    widget.appendChild(artist);
 }
