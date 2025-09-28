@@ -46,7 +46,14 @@ export async function getGithubInbox() {
         }
     });
 
-    const notifications = res.data.map(notification => notification.subject.title);
+    const notifications = res.data.map(notification => {
+        return {
+            title: notification.subject.title,
+            repo: notification.repository.full_name
+        };
+    });
+
+    res.data.map(notification => console.log(notification))
 
   return notifications || null;
 }

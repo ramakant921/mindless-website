@@ -68,8 +68,18 @@ function listInbox(inbox) {
 
         const block = document.createElement("div");
         block.classList.add("blocks");
-        block.innerText = notification;
 
+        const blockRepo= document.createElement("p");
+        blockRepo.classList.add("github-block-title");
+
+        const blockMsg = document.createElement("p");
+
+        blockRepo.innerText = notification.repo;
+        blockMsg.innerText = notification.title;
+
+        // append blockRepoTitle to block 
+        block.appendChild(blockRepo);
+        block.appendChild(blockMsg);
         // append block to github-inbox section
         section.appendChild(block);
     })
