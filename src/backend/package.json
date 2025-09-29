@@ -1,10 +1,10 @@
 {
   "name": "mindless-website",
   "version": "1.0.0",
-  "description": "This is the web page or web development in which me and my buddy will build.",
-  "main": "nodemon index.js",
+  "description": "daily dashboard type shit",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",

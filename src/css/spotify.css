@@ -42,6 +42,20 @@ body {
     font-weight: bold;
 }
 
+#spotify-login {
+    display: none;
+}
+
+.login {
+    background: white;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
 #now-playing {
     font-size: 1rem;
     color: white;

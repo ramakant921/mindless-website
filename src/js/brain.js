@@ -1,20 +1,38 @@
 console.log("Never Gonna Give You Up...");
+const PORT = 42069;
 
-fetch('http://localhost:3000/spotify/currentTrack', {
-    method: 'GET',
+// check if user's spotify is authenticated
+fetch(`http://127.0.0.1:${PORT}/auth/status`, {
+    credentials: 'include'
 })
 .then(res => res.json())
-.then(track => {
-    console.log(track);
-    displayCurrentTrack(track);
+.then(data => {
+    if (data.authenticated) {
+        console.log("fetching spotify data");
+        fetchCurrentTrack();
+    } else {
+        console.log("bruhhh login to spotify");
+        showSpotifyLogin();
+    }
 });
 
-document.getElementById("github-fork").onclick = () => {
-  window.location.href = "http://localhost:3000/spotify/login";
-};
+function fetchCurrentTrack() {
+    // fucking stupid error costed me 2 hours: i was using local host instead of 127.0.0.1
+    fetch(`http://127.0.0.1:${PORT}/spotify/currentTrack`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(track => {
+        console.log(track);
+        if (track) {
+            displayCurrentTrack(track);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
 
-
-fetch('http://localhost:3000/github/repos', {
+fetch(`http://localhost:${PORT}/github/repos`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -22,7 +40,7 @@ fetch('http://localhost:3000/github/repos', {
     listRepos(repos);
 });
 
-fetch('http://localhost:3000/github/forks', {
+fetch(`http://localhost:${PORT}/github/forks`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -30,7 +48,7 @@ fetch('http://localhost:3000/github/forks', {
     listRepos(forks);
 });
 
-fetch('http://localhost:3000/github/inbox', {
+fetch(`http://localhost:${PORT}/github/inbox`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -89,6 +107,19 @@ function listInbox(inbox) {
         // append block to github-inbox section
         section.appendChild(block);
     })
+}
+
+function showSpotifyLogin() {
+    const loginBtn = document.getElementById("spotify-login");
+    const nowPlaying = document.getElementById("now-playing");
+    const coverWrapper = document.getElementById("cover-wrapper");
+    loginBtn.style.display = "block";
+    nowPlaying.style.display = "none";
+    coverWrapper.style.display = "none";
+
+    loginBtn.onclick = () => {
+        window.location.href = `http://localhost:${PORT}/spotify/login`;
+    };
 }
 
 function displayCurrentTrack(track) {
