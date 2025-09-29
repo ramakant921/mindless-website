@@ -3,25 +3,33 @@ import express from 'express';
 import cors from 'cors';
 import querystring from 'querystring';
 import axios from 'axios';
-import nodemon from 'nodemon'; // dev dependency, auto restarts server on file changes
 import dotenv from 'dotenv'; // load .env to access our tokens 
 dotenv.config();
 
 // Modules
-import { setTokens, getCurrentTrack } from "./spotify.js";
+import { setTokenCookies, getCurrentTrack } from "./spotify.js";
 import { getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-const redirect_uri = 'http://127.0.0.1:3000/callback';
+const redirect_uri = 'http://127.0.0.1:42069/auth/spotify/callback';
 
 // server init
 const app = express(); // express let's us create and run server
-app.use(cors()); // CORS: allows to fetch api (very nasty error, remember it)
+app.use(express.static('../'));
+// CORS: allows to fetch api (very nasty error, remember it)
+app.use(cors({
+    origin: ['http://localhost:42069', 'http://127.0.0.1:42069'],
+  credentials: true
+}));
 
 // So basically this is our backend server
 // and all the app.get listed below are endpoints
 // if we hit them they will do their respec. work
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve('../index.html'));
+})
 
 app.get('/spotify/login', (req, res) => {
     // let state = generateRandomString(16);
@@ -38,7 +46,7 @@ app.get('/spotify/login', (req, res) => {
         }));
 });
 
-app.get("/callback", async (req, res) => {
+app.get("/auth/spotify/callback", async (req, res) => {
   let code = req.query.code || null;
   let state = req.query.state || null;
 
@@ -69,24 +77,27 @@ app.get("/callback", async (req, res) => {
       }
     );
 
-      setTokens({
-          access_token: response.data.access_token,
-          refresh_token: response.data.refresh_token,
-          expires_in: response.data.expires_in,
-      });
-    const { access_token, refresh_token } = response.data;
+    const { access_token, refresh_token, expires_in } = response.data;
+    setTokenCookies(res, {access_token, refresh_token, expires_in});
 
-    res.json({ access_token, refresh_token });
+    res.redirect('/');
+
   } catch (error) {
     console.error(error.response?.data || error.message);
     res.status(500).json({ error: "Failed to get tokens" });
   }
 });
 
+app.get('/auth/status', (req, res) => {
+    const cookies = req.headers.cookie;
+    const isAuthenticated = cookies && cookies.includes('spotify_access_token');
+    res.json({ authenticated: isAuthenticated });
+});
+
 app.get('/spotify/currentTrack', (req, res) => {
     // getCurrentTrack function is imported from the spotify module we wrote
     // it call the spotify api to our requested stuff
-    getCurrentTrack()
+    getCurrentTrack(req, res)
     .then(track => { 
         console.log("track: ", track);
         res.json(track);
@@ -98,7 +109,7 @@ app.get('/spotify/currentTrack', (req, res) => {
 
 app.get('/github/repos', (req, res) => {
     getGithubRepo().then(repos => {
-        console.log("repos: ", repos);
+        // console.log("repos: ", repos);
         res.json(repos);
     }).catch(error => {
         console.error("Error fetching inbox:", error); 
@@ -108,7 +119,7 @@ app.get('/github/repos', (req, res) => {
 
 app.get('/github/forks', (req, res) => {
     getGithubFork().then(repos => {
-        console.log("forks: ", repos);
+        // console.log("forks: ", repos);
         res.json(repos);
     }).catch(error => {
         res.status(500).send(error.message);
@@ -117,7 +128,7 @@ app.get('/github/forks', (req, res) => {
 
 app.get('/github/inbox', (req, res) => {
     getGithubInbox().then(inbox => {
-        console.log("inbox: ", inbox);
+        // console.log("inbox: ", inbox);
         res.json(inbox);
     }).catch(error => {
         res.status(500).send(error.message);
@@ -125,9 +136,8 @@ app.get('/github/inbox', (req, res) => {
 });
 
 // consider port as a communication channel where different services communicate 
-const port = 3000; // this is the port where our server will run
-app.listen(port, () => {
-    console.log(`Server Listening Like Google, Meta on port ${port}`);
-    console.log(`http://localhost:${port}`);
-    console.log(`http://localhost:${port}/spotify/currentTrack`); // endpoint to get current track
+const PORT = 42069; // yamate kudasai
+app.listen(PORT, () => {
+    console.log(`Server Listening Like Google, Meta on port ${PORT}`);
+    console.log(`FrontEnd:- http://localhost:${PORT}`);
 });
