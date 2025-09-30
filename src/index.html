@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="./css/spotify.css">
   <link rel="stylesheet" href="./css/day-tracker.css">
   <link rel="stylesheet" href="./css/weather.css">
-  <script defer src="./js/brain.js"></script>
+  <!-- <script defer src="./js/brain.js"></script> -->
+  <script defer src="./js/dayTracker.js"></script>
+  <script defer src="./js/weather.js"></script>
 </head>
 <body>
 
@@ -46,59 +48,16 @@
 
 
     <!-- Day Tracker -->
+    <div class="widget-wrapper">
+    <div id="tracker-widget" class="widget">
     <div class="heading">
     <h2>Day Tracker</h2>
 
-    <div class="days">
+    <div id="days">
       <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
     </div>
 
-    <div class="grid">
-      <div class="row">
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-      </div>
-      <div class="row">
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-      </div>
-      <div class="row">
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-        <div class="cell bad"></div>
-      </div>
-      <div class="row">
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-        <div class="cell mid"></div>
-      </div>
-      <div class="row">
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-        <div class="cell good"></div>
-      </div>
+    <div id="day-tracker-grid">
     </div>
 
     <div class="blocks">
@@ -106,25 +65,40 @@
       <div><div class="blocks mid"></div> Mid</div>
       <div><div class="blocks bad"></div> Bad</div>
     </div>
+
+    <!-- Options -->
+    <select id="day-option">
+        <option value="good-day">Good Day</option>
+        <option value="mid-day">Mid Day</option>
+        <option value="bad-day">Bad Day</option>
+    </select>
+  </div>
+  </div>
   </div>
 
-  <!-- Weather-widget -->
+    <!-- Weather-widget -->
    <div class="heading">
     <h2>Weather</h2>
 
     <img src="images/weather.svg">
     <div class="unit">CELSIUS</div>
-    <div class="temperature">27</div>
-    <div class="location">Prayagraj, India</div>
+    <div id="temp" class="temperature">27</div>
+    <div id="location" class="location">Prayagraj, India</div>
 
     <div class="bottom">
       <div class="item">
-        <img src="images/wind.svg">
-         <span>Wind Speed</span>
+        <img src="../images/wind.svg">
+        <div class="item-flex">
+            <p id="wind-speed">wah</p>
+            <span>Wind Speed</span>
+        </div>
       </div>
       <div class="item">
         <img src="images/water.svg">
-        <span>Humidity</span>
+        <div class="item-flex">
+            <p id="humidity">wah</p>
+            <span>Humidity</span>
+        </div>
       </div>
     </div>
   </div>

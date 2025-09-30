@@ -1,14 +1,17 @@
 // Packages
-import express from 'express';
+import express, { response } from 'express';
 import cors from 'cors';
 import querystring from 'querystring';
 import axios from 'axios';
+import bodyParser from 'body-parser';
 import dotenv from 'dotenv'; // load .env to access our tokens 
 dotenv.config();
 
 // Modules
 import { setTokenCookies, getCurrentTrack } from "./spotify.js";
 import { getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
+
+const weather_api = process.env.WEATHER_API;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -18,6 +21,12 @@ const redirect_uri = 'http://127.0.0.1:42069/auth/spotify/callback';
 const app = express(); // express let's us create and run server
 app.use(express.static('../'));
 // CORS: allows to fetch api (very nasty error, remember it)
+app.use(bodyParser.json());
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    }),
+);
 app.use(cors({
     origin: ['http://localhost:42069', 'http://127.0.0.1:42069'],
   credentials: true
@@ -92,6 +101,23 @@ app.get('/auth/status', (req, res) => {
     const cookies = req.headers.cookie;
     const isAuthenticated = cookies && cookies.includes('spotify_access_token');
     res.json({ authenticated: isAuthenticated });
+});
+
+app.post('/weather', async (req, res) => {
+    try {
+        const response = await axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${req.body.lat}&lon=${req.body.long}&appid=${weather_api}`
+        );
+
+        res.json( response.data);
+        console.log(response.data)
+        // res.send(response.data);
+    }
+    catch (error) {
+        console.error(error.response?.data || error.message);
+        res.status(500).json({ error: "Failed to get tokens" });
+    }
+
 });
 
 app.get('/spotify/currentTrack', (req, res) => {
