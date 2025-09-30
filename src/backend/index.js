@@ -140,5 +140,5 @@ const PORT = 42069; // yamate kudasai
 app.listen(PORT, () => {
     console.log(`Server Listening Like Google, Meta on port ${PORT}`);
     console.log(`FrontEnd:- http://localhost:${PORT}`);
-    console.log(`https://localhost:${PORT}`);
+    console.log(`https://localhost:${PORT}/spotify/login to login to spotify`);
 });
