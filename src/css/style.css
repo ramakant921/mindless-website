@@ -9,6 +9,14 @@
 }
 
 :root {
+    --primary-color: black;
+    --secondary-color: white;
+
+    --pad-m: 1rem;
+    --pad-s: 0.5rem;
+
+    --br-mid: 1rem;
+
     --secondary-text: grey;
 }
 

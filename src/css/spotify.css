@@ -39,6 +39,7 @@ body {
 .widget-title {
     font-size: 2rem;
     margin: 0;
+    margin-bottom: 0.5rem;
     font-weight: bold;
 }
 

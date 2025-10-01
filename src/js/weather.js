@@ -1,9 +1,4 @@
 const PORT = 42069;
-function getLocation() {
-  if (navigator.geolocation) {
-    console.log(navigator.geolocation.getCurrentPosition());
-  }
-}
 
 function displayWeather(data) {
     const temp = document.getElementById("temp");
@@ -56,4 +51,3 @@ function error(err) {
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-
