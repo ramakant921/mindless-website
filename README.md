@@ -8,7 +8,7 @@ npm install
 ### Run The Server
 ```
 cd src/backend
-node index.js
+npm run dev
 ```
 ### Frontend 
 ```
