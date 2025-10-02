@@ -1,19 +1,18 @@
 # Daily Dashboard 
 
 ## Run This Shit
-### backend
-- Generate Github Personal Access Token And Add It In The Backend Directory Of This Project
-- Install npm Packages
+### Install npm Packages
 ```
 npm install
 ```
-- Run The Server
+### Run The Server
 ```
 cd src/backend
-node index.js
+npm run dev
 ```
-### frontend 
-- just open the main html file in the browser
-
+### Frontend 
+```
+visit http://localhost:42069
+```
 
 ![FigmaDesign](./screenshot/daily_dashboard.png)

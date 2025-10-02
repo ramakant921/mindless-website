@@ -4,6 +4,8 @@ console.log(firstDay);
 
 // Run
 listDays();
+// storeData();
+retrieveData();
 
 // Func me daddy
 function totalDays(){
@@ -14,10 +16,16 @@ function totalDays(){
 
 function listDays(){
     const dayGrid = document.getElementById("day-tracker-grid");
+    if(!retrieveData()) {
+        storeData();
+    }
+    const data = retrieveData();
+    console.log("running")
 
     // pad inital empty days
-    for(let i=1; i<firstDay; ++i){
-        console.log(i);
+    let emptyDays=1;
+    for(; emptyDays<firstDay; ++emptyDays){
+        console.log(emptyDays);
         const cell = document.createElement("div");
         cell.classList.add("day-cell", "disabled-day");
 
@@ -25,11 +33,22 @@ function listDays(){
     }
     
     // interactive days
-    for(let i=0; i<totalDays(); ++i){
+    let idx=1;
+    for(; idx<=totalDays(); ++idx){
         let cell = document.createElement("div");
-        cell.classList.add("day-cell", "good-day");
+        if(data[idx]) cell.classList.add("day-cell", data[idx]);
+        else cell.classList.add("day-cell", "vacant-day");
+        cell.dataset.date = idx;
 
         cell.addEventListener("click", showOptions);
+
+        dayGrid.appendChild(cell);
+    }
+
+    // pad last empty days
+    for(; idx<=35-emptyDays+1; ++idx){
+        const cell = document.createElement("div");
+        cell.classList.add("day-cell", "disabled-day");
 
         dayGrid.appendChild(cell);
     }
@@ -37,28 +56,26 @@ function listDays(){
 
 function showOptions(day) {
     const options = document.getElementById("day-option");
-    options.focus();
-    options.size = options.options.length;
-    options.click();
+    const dayOptionType = document.querySelectorAll(".day-option-type");
     
     options.style.top = day.layerY + "px";
     options.style.left = day.layerX + "px";
     options.style.display = "block";
 
-    options.onchange = (e) => setDayType(e, day.target);
+    dayOptionType.forEach(option => {
+        option.onclick = (e) => setDayType(e.target.dataset.option, day.target);
+    })
 
-    day.stopPropagation(); // make sure it doesn't shy away right away
+    day.stopPropagation(); // make sure it doesn't shy right away
 
     // Close menu if user don't like the options
     document.addEventListener("click", hideOptions, { once: true });
 }
 
-function setDayType(e, day) {
-    console.log("day clicked:", day);
-    console.log("selected:", e.target.value);
-
-    day.classList.remove("good-day", "mid-day", "bad-day");
-    day.classList.add(e.target.value);
+function setDayType(selectedType, day) {
+    day.classList.remove("good-day", "mid-day", "bad-day", "vacant-day");
+    day.classList.add(selectedType);
+    updateData(day.dataset.date, selectedType);
 
     hideOptions();
 }
@@ -67,4 +84,28 @@ function hideOptions() {
     const options = document.getElementById("day-option");
     options.style.display = "none";
     options.onchange = null; // remove prev listener 
+}
+
+function storeData(data={}) {
+    if(Object.keys(data).length === 0) {
+        for(let day=1; day<=totalDays(); ++day){
+            data[day] = "";
+        }
+    }
+
+    localStorage.setItem("day_data", JSON.stringify(data));
+}
+
+function retrieveData() {
+    let data = JSON.parse(localStorage.getItem("day_data"));
+    return data ? data : null;
+}
+
+function updateData(date, type) {
+    const data = retrieveData();
+    if(!data) return;
+
+    data[date] = type;
+
+    storeData(data);
 }

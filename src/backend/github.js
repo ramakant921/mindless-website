@@ -4,7 +4,6 @@ dotenv.config();
 
 const token = process.env.GITHUB_TOKEN;
 
-console.log(token);
 if (!token) {
   console.error("bruh add your .env file with github token init....");
 }
