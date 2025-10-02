@@ -9,7 +9,7 @@ dotenv.config();
 
 // Modules
 import { setTokenCookies, getCurrentTrack } from "./spotify.js";
-import { getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
+import { getGithubLogin, githubCallback, getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
 
 const weather_api = process.env.WEATHER_API;
 
@@ -95,6 +95,15 @@ app.get("/auth/spotify/callback", async (req, res) => {
     console.error(error.response?.data || error.message);
     res.status(500).json({ error: "Failed to get tokens" });
   }
+});
+
+// --------GITHUB--------
+app.get('/github/login', (req, res) => {
+    getGithubLogin(res);
+});
+
+app.get('/auth/github/callback', (req, res) => {
+    githubCallback(res);
 });
 
 app.get('/auth/status', (req, res) => {

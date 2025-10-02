@@ -1,134 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>TODO</title>
-    <style>
-        body{
-            background: blue;
-            font-family: Inter, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container{
-            width: 100%;
-            min-height: 100vh;
-            background: #BABABA;
-            padding: 10px;
-        }
-        .todo-block{
-            width: 100%;
-            max-width: 540px;
-            margin: 100px auto 20px;
-            padding: 40px 30px 70px;
-            border-radius: 10px;
-            background-color: #111111;
-        }
-        .todo-block h2{
-            color: #ffffff;
-            display: flex;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .todo-block h2 img{
-            width: 25px;
-            margin-left: 10px;
-        }
-        .row{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #ffffff;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            padding-left: 5px;
-        }
-        input{
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            padding: 8px;
-            font-weight: 10px;
-            font-size: 14px;
-        }
-        button{
-            border: none;
-            outline: none;
-            background: #c36d97;
-            color: #ffffff;
-            padding: 15px 30px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-left: none;
-        }
-        ul li{
-            list-style: none;
-            font-size: 18px;
-            padding: 12px 8px 12px 50px;
-            user-select: none;
-            cursor: pointer;
-            color: yellow;
-            position: relative;
-        }
-        ul li::before{
-            content: '';
-            position: absolute;
-            height: 28px;
-            width: 28px;
-            border-radius: 50%;
-            background-image: url('src/images/unchecked.png');
-            background-size: cover;
-            background-position: center;
-            top: 12px;
-            left: 8px;
-        }
-        ul li.checked{
-            color: rgb(193, 193, 219);
-            text-decoration: line-through;
-        }
-        ul li.checked::before{
-            background-image: url('src/images/checked.png');
-        }
-        ul li span{
-            position: absolute;
-            right: 0;
-            top: 5px;
-            width: 40px;
-            height: 40px;
-            font-size: 22px;
-            color: #555555;
-            line-height: 40px;
-            text-align: center;
-            border-radius: 50%;
-        }
-        ul li span::hover{
-            background-color: #edeef0;
-        }
-    </style>
-
-
+  <title>Todo List</title>
+  <link rel="stylesheet" href="src/css/todo.css">
 </head>
 <body>
-    <body>
-        <div class="container">
-            <div class="todo-block">
-                <h2>Todo List<img src="src/images/icon.png"></h2>
-                <div class="row">
-                    <input type="text" id="input-box" placeholder="Add your Text">
-                    <button onclick="addTask()">Add</button>
-                </div>
-                <ul id="list-container">
-                    <li>Shits 1</li>
-                    <li>Shits 2</li>
-                    <li>Shits 3</li>
-                </ul>
-            </div>
-        </div>
-        <script src="script.js"></script>
-    </body>
+  <div class="container">
+    <h2>Todo List 📋</h2>
+    <div class="input">
+      <input type="text" id="input-box" placeholder="Add your text">
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="list-container"></ul>
+  </div>
+<script src="script.js"></script>  
 </body>
 </html>
