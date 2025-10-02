@@ -1,0 +1,75 @@
+body {
+      background: #000000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: 30px auto;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .input {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+    }
+    .input button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 0 20px 20px 0;
+      background: #e91e63;
+      color: white;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      position: relative;
+      padding: 10px 40px 10px 40px;
+      margin: 10px 0;
+      background: #222;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    ul li.checked {
+      color: gray;
+      text-decoration: line-through;
+    }
+
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 20px;
+      width: 20px;
+      background-image: url("unchecked.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    ul li.checked::before {
+      background-image: url("checked.png");
+    }
+
+    ul li span {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: #ff4c4c;
+      cursor: pointer;
+    }
