@@ -1,8 +1,7 @@
-console.log("Never Gonna Give You Up...");
-const PORT = 42069;
+import { setting } from './settings.js';
 
 // check if user's spotify is authenticated
-fetch(`http://127.0.0.1:${PORT}/auth/status`, {
+fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
     credentials: 'include'
 })
 .then(res => res.json())
@@ -17,8 +16,7 @@ fetch(`http://127.0.0.1:${PORT}/auth/status`, {
 });
 
 function fetchCurrentTrack() {
-    // fucking stupid error costed me 2 hours: i was using local host instead of 127.0.0.1
-    fetch(`http://127.0.0.1:${PORT}/spotify/currentTrack`, {
+    fetch(`http://127.0.0.1:${setting.port}/spotify/currentTrack`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -32,82 +30,6 @@ function fetchCurrentTrack() {
     .catch(error => console.error("Error:", error));
 }
 
-fetch(`http://localhost:${PORT}/github/repos`, {
-    method: 'GET',
-})
-.then(res => res.json())
-.then(repos => {
-    listRepos(repos);
-});
-
-fetch(`http://localhost:${PORT}/github/forks`, {
-    method: 'GET',
-})
-.then(res => res.json())
-.then(forks => {
-    listRepos(forks);
-});
-
-fetch(`http://localhost:${PORT}/github/inbox`, {
-    method: 'GET',
-})
-.then(res => res.json())
-.then(notifications => {
-    listInbox(notifications);
-});
-
-function listRepos(repos) {
-    repos.map(repo => {
-        // Grab github-repo section
-        const section = document.getElementById("github-repo");
-
-        // dynamically create div and add class and text
-        const block = document.createElement("div");
-        block.classList.add("blocks");
-        block.innerText = repo;
-
-        // append block to github-repo section
-        section.appendChild(block);
-    })
-}
-
-function listForks(repos) {
-    repos.map(repo => {
-        // Grab github-fork section
-        const section = document.getElementById("github-fork");
-
-        const block = document.createElement("div");
-        block.classList.add("blocks");
-        block.innerText = repo;
-
-        // append block to github-fork section
-        section.appendChild(block);
-    })
-}
-
-function listInbox(inbox) {
-    inbox.map(notification => {
-        // Grab github-inbox section
-        const section = document.getElementById("github-inbox");
-
-        const block = document.createElement("div");
-        block.classList.add("blocks");
-
-        const blockRepo= document.createElement("p");
-        blockRepo.classList.add("github-block-title");
-
-        const blockMsg = document.createElement("p");
-
-        blockRepo.innerText = notification.repo;
-        blockMsg.innerText = notification.title;
-
-        // append blockRepoTitle to block 
-        block.appendChild(blockRepo);
-        block.appendChild(blockMsg);
-        // append block to github-inbox section
-        section.appendChild(block);
-    })
-}
 
 function showSpotifyLogin() {
     const loginBtn = document.getElementById("spotify-login");
@@ -118,7 +40,7 @@ function showSpotifyLogin() {
     coverWrapper.style.display = "none";
 
     loginBtn.onclick = () => {
-        window.location.href = `http://localhost:${PORT}/spotify/login`;
+        window.location.href = `http://localhost:${setting.port}/spotify/login`;
     };
 }
 

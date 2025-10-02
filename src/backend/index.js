@@ -9,7 +9,7 @@ dotenv.config();
 
 // Modules
 import { setTokenCookies, getCurrentTrack } from "./spotify.js";
-import { getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
+import { getGithubLogin, githubCallback, getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
 
 const weather_api = process.env.WEATHER_API;
 
@@ -97,9 +97,24 @@ app.get("/auth/spotify/callback", async (req, res) => {
   }
 });
 
+// --------GITHUB--------
+app.get('/github/login', (req, res) => {
+    getGithubLogin(res);
+});
+
+app.get('/auth/github/callback', (req, res) => {
+    githubCallback(req, res);
+});
+
 app.get('/auth/status', (req, res) => {
     const cookies = req.headers.cookie;
     const isAuthenticated = cookies && cookies.includes('spotify_access_token');
+    res.json({ authenticated: isAuthenticated });
+});
+
+app.get('/auth/github/status', (req, res) => {
+    const cookies = req.headers.cookie;
+    const isAuthenticated = cookies && cookies.includes('github_access_token');
     res.json({ authenticated: isAuthenticated });
 });
 
@@ -124,41 +139,47 @@ app.get('/spotify/currentTrack', (req, res) => {
     // getCurrentTrack function is imported from the spotify module we wrote
     // it call the spotify api to our requested stuff
     getCurrentTrack(req, res)
-    .then(track => { 
-        console.log("track: ", track);
-        res.json(track);
-    })
-    .catch(error => {
-        res.status(500).send(error.message);
-    });
+        .then(track => { 
+            // console.log("track: ", track);
+            res.json(track);
+        })
+        .catch(error => {
+            res.status(500).send(error.message);
+        });
 });
 
 app.get('/github/repos', (req, res) => {
-    getGithubRepo().then(repos => {
-        // console.log("repos: ", repos);
-        res.json(repos);
-    }).catch(error => {
-        console.error("Error fetching inbox:", error); 
-        res.status(500).send(error.message);
-    });
+    getGithubRepo(req)
+        .then(repos => {
+            // console.log("repos: ", repos);
+            res.json(repos);
+        })
+        .catch(error => {
+            console.error("Error fetching inbox:", error); 
+            res.status(500).send(error.message);
+        });
 });
 
 app.get('/github/forks', (req, res) => {
-    getGithubFork().then(repos => {
-        // console.log("forks: ", repos);
-        res.json(repos);
-    }).catch(error => {
-        res.status(500).send(error.message);
-    });
+    getGithubFork(req)
+        .then(repos => {
+            // console.log("forks: ", repos);
+            res.json(repos);
+        })
+        .catch(error => {
+            res.status(500).send(error.message);
+        });
 });
 
 app.get('/github/inbox', (req, res) => {
-    getGithubInbox().then(inbox => {
-        // console.log("inbox: ", inbox);
-        res.json(inbox);
-    }).catch(error => {
-        res.status(500).send(error.message);
-    });
+    getGithubInbox(req)
+        .then(inbox => {
+            // console.log("inbox: ", inbox);
+            res.json(inbox);
+        })
+        .catch(error => {
+            res.status(500).send(error.message);
+        });
 });
 
 // consider port as a communication channel where different services communicate 

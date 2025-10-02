@@ -7,9 +7,13 @@
   <link rel="stylesheet" href="./css/spotify.css">
   <link rel="stylesheet" href="./css/day-tracker.css">
   <link rel="stylesheet" href="./css/weather.css">
-  <script defer src="./js/brain.js"></script>
-  <script defer src="./js/dayTracker.js"></script>
-  <script defer src="./js/weather.js"></script>
+  <!-- type="module" allows us to import different js file (module), currently -->
+  <!-- we are importing another js file so that we can define our settings like port -->
+  <!-- and make it accessible to all the js file -->
+  <script defer type="module" src="./js/brain.js"></script> 
+  <script defer type="module" src="./js/dayTracker.js"></script>
+  <script defer type="module" src="./js/weather.js"></script>
+  <script defer type="module" src="./js/github.js"></script>
 </head>
 <body>
 
@@ -28,21 +32,26 @@
 
 
         <!-- Github Widget -->
-        <div class="block">
-            <h2>Github Stats</h2>
+        <div class="widget-wrapper">
+            <div class="widget">
+                <div id="github-widget" class="widget-content">
+                    <h2>Github Stats</h2>
 
-            <div id="github-repo" class="section">
-                <h3>📚 Latest Repositories</h3>
-            </div>
+                    <div id="github-repo" class="section">
+                        <h3>📚 Latest Repositories</h3>
+                    </div>
 
-            <div id="github-fork" class="section">
-                <h3>💡 Forked Repositories</h3>
-                <div class="blocks">UwU</div>
-                <div class="blocks">deez nuts</div>
-            </div>
+                    <div id="github-fork" class="section">
+                        <h3>💡 Forked Repositories</h3>
+                        <div class="blocks">UwU</div>
+                        <div class="blocks">deez nuts</div>
+                    </div>
 
-            <div id="github-inbox" class="section">
-                <h3>📬 Inbox</h3>
+                    <div id="github-inbox" class="section">
+                        <h3>📬 Inbox</h3>
+                    </div>
+                </div>
+                <button id="github-login" class="login">Login</button>
             </div>
         </div>
 
