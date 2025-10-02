@@ -1,4 +1,4 @@
-const PORT = 42069;
+import { setting } from './settings.js';
 
 function displayWeather(data) {
     const temp = document.getElementById("temp");
@@ -29,7 +29,7 @@ async function success(pos) {
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
 
-    fetch(`http://127.0.0.1:${PORT}/weather`, {
+    fetch(`http://127.0.0.1:${setting.port}/weather`, {
         method: "POST",
         body: JSON.stringify({lat: crd.latitude, long: crd.longitude}),
         headers: {

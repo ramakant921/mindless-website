@@ -1,8 +1,7 @@
-console.log("Never Gonna Give You Up...");
-const PORT = 42069;
+import { setting } from './settings.js';
 
 // check if user's spotify is authenticated
-fetch(`http://127.0.0.1:${PORT}/auth/status`, {
+fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
     credentials: 'include'
 })
 .then(res => res.json())
@@ -17,8 +16,7 @@ fetch(`http://127.0.0.1:${PORT}/auth/status`, {
 });
 
 function fetchCurrentTrack() {
-    // fucking stupid error costed me 2 hours: i was using local host instead of 127.0.0.1
-    fetch(`http://127.0.0.1:${PORT}/spotify/currentTrack`, {
+    fetch(`http://127.0.0.1:${setting.port}/spotify/currentTrack`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -32,7 +30,7 @@ function fetchCurrentTrack() {
     .catch(error => console.error("Error:", error));
 }
 
-fetch(`http://localhost:${PORT}/github/repos`, {
+fetch(`http://localhost:${setting.port}/github/repos`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -40,7 +38,7 @@ fetch(`http://localhost:${PORT}/github/repos`, {
     listRepos(repos);
 });
 
-fetch(`http://localhost:${PORT}/github/forks`, {
+fetch(`http://localhost:${setting.port}/github/forks`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -48,7 +46,7 @@ fetch(`http://localhost:${PORT}/github/forks`, {
     listRepos(forks);
 });
 
-fetch(`http://localhost:${PORT}/github/inbox`, {
+fetch(`http://localhost:${setting.port}/github/inbox`, {
     method: 'GET',
 })
 .then(res => res.json())
@@ -118,7 +116,7 @@ function showSpotifyLogin() {
     coverWrapper.style.display = "none";
 
     loginBtn.onclick = () => {
-        window.location.href = `http://localhost:${PORT}/spotify/login`;
+        window.location.href = `http://localhost:${setting.port}/spotify/login`;
     };
 }
 
