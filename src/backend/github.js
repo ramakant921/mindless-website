@@ -1,16 +1,29 @@
 import axios from "axios";
+import cookie from "cookie";
 import dotenv from 'dotenv'; // load .env to access our tokens 
 import querystring from 'querystring';
 dotenv.config();
 
-const token = process.env.GITHUB_TOKEN;
 const client_id = process.env.GITHUB_CLIENT_ID;
 const client_secret = process.env.GITHUB_CLIENT_SECRET;
 const redirect_uri = 'http://127.0.0.1:42069/auth/github/callback';
 
-if (!token) {
-  console.error("bruh add your .env file with github token init....");
-}
+// for prod
+// const cookieOptions = {
+//     httpOnly: true,
+//     secure: true, 
+//     sameSite: "lax",
+//     path: "/",
+// };
+
+// for dev
+const cookieOptions = {
+    httpOnly: true,
+    secure: false, // [Warning]: Mr.R make sure to keep it true for prod it's okay for dev
+    sameSite: "lax",
+    path: "/",
+};
+
 
 export async function getGithubLogin(res) {
     // Randomize the state later
@@ -18,7 +31,7 @@ export async function getGithubLogin(res) {
     let state = "thcehnwhetpnegtr";
     let scope = 'repo notifications read:user';
 
-    res.redirect('https://github.com/login/oauth/authorize' +
+    res.redirect('https://github.com/login/oauth/authorize?' +
         querystring.stringify({
             response_type: 'code',
             client_id: client_id,
@@ -28,8 +41,7 @@ export async function getGithubLogin(res) {
         }));
 }
 
-export async function githubCallback(res){
-    console.log("in git callback");
+export async function githubCallback(req, res){
     let code = req.query.code || null;
     let state = req.query.state || null;
 
@@ -43,25 +55,24 @@ export async function githubCallback(res){
     }
 
     try {
-        const response = await axios.post(
-            "https://githube.com/login/oauth/access_token",
-            new URLSearchParams({
-                code: code,
-                redirect_uri: redirect_uri,
-                grant_type: "authorization_code",
-            }),
+        const response = await axios.get(
+            "https://github.com/login/oauth/access_token", 
             {
+                params: {
+                    client_id: client_id,
+                    client_secret: client_secret,
+                    code: code,
+                    redirect_uri: redirect_uri,
+                },
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    Authorization:
-                    "Basic " +
-                    Buffer.from(client_id + ":" + client_secret).toString("base64"),
+                    "Accept": "application/json",
+                    "Accept-Encoding": "application/json",
                 },
             }
         );
 
-        // const { access_token, refresh_token, expires_in } = response.data;
-        // setTokenCookies(res, {access_token, refresh_token, expires_in});
+        const { access_token } = response.data;
+        setGithubTokenCookies(res, access_token);
 
         res.redirect('/');
 
@@ -71,20 +82,61 @@ export async function githubCallback(res){
     }
 }
 
-export async function getGithubRepo() {
-    const res = await axios.get("https://api.github.com/user/repos?sort=updated", {
-        headers: {
-            Authorization: `token ${token}`
-        }
-    });
+// Store Token As Cookie
+export function setGithubTokenCookies(res, access_token) {
+  if (!access_token) return;
 
-    // github api return a object (collection of different data type like variable or array)
-    // we access object data with . like response.data (so data is a part of object which is stored in the response var.)
-    const repoNames = res.data.map(repo => repo.full_name); // .map is basically return a array where we are appending all the name of the repo)
-    return repoNames || null; // return data to our server if there is any data otherwise return null
+    console.log("saving data......");
+  res.setHeader("Set-Cookie", [
+    cookie.serialize("github_access_token", access_token, {
+      ...cookieOptions,
+      maxAge: 30 * 24 * 60 * 60, // expires after 30 days
+    })
+  ]);
+
+    console.log("saved data");
 }
 
-export async function getGithubFork() {
+export function retrieveGithubTokens(req) {
+    if (!req.headers.cookie) {
+        console.log("Warning: no cookies to eat");
+        return null;
+    };
+
+    const parsed = cookie.parse(req.headers.cookie);
+
+    return parsed.github_access_token || null;
+}
+
+export async function getGithubRepo(req) {
+    const token = retrieveGithubTokens(req); 
+    if(!token) return;
+    try {
+        const res = await axios.get("https://api.github.com/user/repos?sort=updated", {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        });
+
+        if (!res) return null;
+
+        // github api return a object (collection of different data type like variable or array)
+        // we access object data with . like response.data (so data is a part of object which is stored in the response var.)
+        const repoNames = res.data.map(repo => repo.full_name); // .map is basically return a array where we are appending all the name of the repo)
+        return repoNames || null; // return data to our server if there is any data otherwise return null
+    }
+    catch (err) {
+        console.error(
+            "Error fetching Repos:",
+            err.response?.data || err.message
+        );
+        return null;
+    }
+}
+
+export async function getGithubFork(req) {
+    const token = retrieveGithubTokens(req); 
+    if(!token) return;
     const res = await axios.get("https://api.github.com/user/repos", {
         headers: {
             Authorization: `token ${token}`
@@ -98,7 +150,9 @@ export async function getGithubFork() {
   return forkedRepos || null;
 }
 
-export async function getGithubInbox() {
+export async function getGithubInbox(req) {
+    const token = retrieveGithubTokens(req); 
+    if(!token) return;
     const res = await axios.get("https://api.github.com/notifications?all=true", {
         headers: {
             Authorization: `token ${token}`
