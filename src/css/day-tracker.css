@@ -39,10 +39,16 @@ body {
 }
 
 .day-cell {
+    display: grid;
+    place-items: center;
     width: 24px;
     height: 24px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.day-cell img {
+    width: 55%;
 }
 
 #legends {
