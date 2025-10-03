@@ -25,7 +25,7 @@ body {
       padding: 10px 20px;
       border: none;
       border-radius: 0 20px 20px 0;
-      background: #e91e63;
+      background: #3b4abd;
       color: white;
       cursor: pointer;
     }
@@ -35,7 +35,7 @@ body {
     }
     ul li {
       position: relative;
-      padding: 10px 40px 10px 40px;
+      padding: 10px 40px;
       margin: 10px 0;
       background: #222;
       border-radius: 8px;
@@ -70,6 +70,14 @@ body {
       top: 50%;
       transform: translateY(-50%);
       font-size: 20px;
-      color: #ff4c4c;
+      color: #ebd6d6;
       cursor: pointer;
+    }
+    .Tasks{
+      background-color: #4A4A4A;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 0 auto;
+      overflow: scroll;
+      height: 250px;
     }
