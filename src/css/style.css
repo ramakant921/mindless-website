@@ -69,3 +69,11 @@ body {
     margin-bottom: 0.2rem;
     color: var(--secondary-text);
 }
+
+#boom-boom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}

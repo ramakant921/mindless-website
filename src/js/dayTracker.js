@@ -39,7 +39,7 @@ function listDays(){
         if(data[idx]) {
             if(data[idx] == "good-day"){
                 const trophy = document.createElement("img");
-                trophy.src = "../images/trophy.png";
+                trophy.src = "../assets/images/trophy.png";
                 cell.appendChild(trophy);
             }
             cell.classList.add("day-cell", data[idx]);
@@ -84,7 +84,7 @@ function setDayType(selectedType, day) {
     day.classList.add(selectedType);
     if(selectedType == "good-day") {
         const trophy = document.createElement("img");
-        trophy.src = "../images/trophy.png";
+        trophy.src = "../assets/images/trophy.png";
         day.appendChild(trophy);
     }
 
