@@ -25,8 +25,6 @@ export function setTokenCookies(res, { access_token, refresh_token, expires_in }
   if (!access_token || !refresh_token) return;
 
     console.log("saving data......");
-
-    console.log("saving data......");
     const now = Math.floor(Date.now() / 1000); // convert ms to seconds
   res.setHeader("Set-Cookie", [
     cookie.serialize("spotify_access_token", access_token, {

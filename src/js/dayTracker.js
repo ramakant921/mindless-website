@@ -36,7 +36,14 @@ function listDays(){
     let idx=1;
     for(; idx<=totalDays(); ++idx){
         let cell = document.createElement("div");
-        if(data[idx]) cell.classList.add("day-cell", data[idx]);
+        if(data[idx]) {
+            if(data[idx] == "good-day"){
+                const trophy = document.createElement("img");
+                trophy.src = "../images/trophy.png";
+                cell.appendChild(trophy);
+            }
+            cell.classList.add("day-cell", data[idx]);
+        }
         else cell.classList.add("day-cell", "vacant-day");
         cell.dataset.date = idx;
 
@@ -75,6 +82,12 @@ function showOptions(day) {
 function setDayType(selectedType, day) {
     day.classList.remove("good-day", "mid-day", "bad-day", "vacant-day");
     day.classList.add(selectedType);
+    if(selectedType == "good-day") {
+        const trophy = document.createElement("img");
+        trophy.src = "../images/trophy.png";
+        day.appendChild(trophy);
+    }
+
     updateData(day.dataset.date, selectedType);
 
     hideOptions();

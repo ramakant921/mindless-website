@@ -6,9 +6,8 @@ function displayWeather(data) {
     const wind = document.getElementById("wind-speed");
     const humidity = document.getElementById("humidity");
 
-    // const tempInC = (data.main.temp - 32) / 1.8
-    // temp.innerText = tempInC;
-    temp.innerText = data.main.temp;
+    const tempInC = Math.floor(data.main.temp - 273.15); // Kelvin -> Celsius
+    temp.innerText = tempInC;
     location.innerText = data.name;
     wind.innerText = data.wind.speed;
     humidity.innerText = data.main.humidity;

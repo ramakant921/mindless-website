@@ -10,6 +10,7 @@ dotenv.config();
 // Modules
 import { setTokenCookies, getCurrentTrack } from "./spotify.js";
 import { getGithubLogin, githubCallback, getGithubRepo, getGithubFork, getGithubInbox } from "./github.js";
+import { getGmailInbox, getGmailLogin, gmailCallback } from './gmail.js';
 
 const weather_api = process.env.WEATHER_API;
 
@@ -97,6 +98,12 @@ app.get("/auth/spotify/callback", async (req, res) => {
   }
 });
 
+app.get('/auth/status', (req, res) => {
+    const cookies = req.headers.cookie;
+    const isAuthenticated = cookies && cookies.includes('spotify_access_token');
+    res.json({ authenticated: isAuthenticated });
+});
+
 // --------GITHUB--------
 app.get('/github/login', (req, res) => {
     getGithubLogin(res);
@@ -106,16 +113,29 @@ app.get('/auth/github/callback', (req, res) => {
     githubCallback(req, res);
 });
 
-app.get('/auth/status', (req, res) => {
-    const cookies = req.headers.cookie;
-    const isAuthenticated = cookies && cookies.includes('spotify_access_token');
-    res.json({ authenticated: isAuthenticated });
-});
-
 app.get('/auth/github/status', (req, res) => {
     const cookies = req.headers.cookie;
     const isAuthenticated = cookies && cookies.includes('github_access_token');
     res.json({ authenticated: isAuthenticated });
+});
+
+// --------GMAIL--------
+app.get('/google/login', (req, res) => {
+    getGmailLogin(res);
+});
+
+app.get('/auth/google/callback', (req, res) => {
+    gmailCallback(req, res);
+});
+
+app.get('/auth/google/status', (req, res) => {
+    const cookies = req.headers.cookie;
+    const isAuthenticated = cookies && cookies.includes('google_access_token');
+    res.json({ authenticated: isAuthenticated });
+});
+
+app.get('/google/inbox', (req, res) => {
+    getGmailInbox(req);
 });
 
 app.post('/weather', async (req, res) => {
