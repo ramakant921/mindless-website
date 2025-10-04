@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="./css/spotify.css">
   <link rel="stylesheet" href="./css/day-tracker.css">
   <link rel="stylesheet" href="./css/weather.css">
+  <link rel="stylesheet" href="./css/todo.css">
+  <link rel="stylesheet" href="./css/pomodoro.css">
   <!-- type="module" allows us to import different js file (module), currently -->
   <!-- we are importing another js file so that we can define our settings like port -->
   <!-- and make it accessible to all the js file -->
@@ -15,6 +17,8 @@
   <script defer type="module" src="./js/weather.js"></script>
   <script defer type="module" src="./js/github.js"></script>
   <script defer type="module" src="./js/gmail.js"></script>
+  <script defer type="module" src="./js/pomodoro.js"></script>
+  <script defer type="module" src="./js/todo.js"></script>
   <script defer type="module" src="./js/pomodoro.js"></script>
 </head>
 <body>
@@ -115,6 +119,37 @@
             <li class="day-option-type margin-s" data-option="mid-day"><p>Mid Day</p></li>
             <li class="day-option-type" data-option="bad-day"><p>Bad Day</p></li>
         </ul>
+
+        <!-- Todo-List -->
+        <div class="todo-widget">
+            <h3>Todo-List</h3>
+                <ul class="todo-list" id="todo-list">
+      
+                </ul>
+
+            <form class="add-task" id="task-form">
+                <input type="text" id="task-input" placeholder="Add a card">
+                <button type="submit">+</button>
+            </form>
+        </div>
+
+        <!-- Pomodoro-Widget -->
+         <div class="pomodoro-widget">
+            <h2>Pomodoro</h2>
+            <div class="circle">
+              <img src="assets/images/elapsed.svg" id="dullCircle">
+              <img src="assets/images/elapsed1.svg" id="activeCircle" style="clip-path: circle(50% at 50% 50%);">
+              <div class="time" id="timer">25:00</div>
+            </div>
+        
+            <div class="bottom-row">
+              <div class="icon"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
+              <div>Work</div>
+              <div>H</div>
+            </div>
+        
+            <button class="play-pause" id="playPause">play</button>
+        </div>
 
     </body>
 </html>

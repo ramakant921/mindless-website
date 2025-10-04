@@ -1,54 +1,45 @@
-const startPauseBtn = document.getElementById("weather-hero");
-
+let duration = 25 * 60;
+let timeLeft = duration;
+let timerInterval = null;
 let isRunning = false;
-let countdownId = null;
-let min = 0;
-let sec = 15;
-let totalTime = (min * 60) + sec;
 
-startPauseBtn.addEventListener("click", () => {
-    console.log(isRunning);
-    if(!isRunning){
-        countdownId = setInterval(() => {
-            if(totalTime == 0) {
-                const explosionGif = document.createElement("img");
-                explosionGif.src = "./assets/images/explosion.gif?cacheBust=" + new Date().getTime(); 
-                explosionGif.id = "boom-boom";
-                document.body.appendChild(explosionGif);
-                PlayAudio("../assets/audio/explode.wav")
 
-                clearInterval(countdownId);
-            }
+const timerDisplay = document.getElementById("timer");
+const playPauseBtn = document.getElementById("playPause");
+const activeCircle = document.getElementById("activeCircle");
 
-            totalTime -= 1;
 
-            const minute = Math.floor(totalTime/60);
-            if(minute<0) minute = 0;
-            const second = totalTime%60;
+function updateDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent =
+        `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
-            console.log(minute + ":" + second);
+      const progress = (duration - timeLeft) / duration;
+      const clipValue = 100 - progress * 100;
+      activeCircle.style.clipPath = `inset(${clipValue}% 0 0 0)`;
+    }
 
-            if(totalTime <= 10 && totalTime > 0) PlayAudio("../assets/audio/beep.wav");
-            if(minute == 0 && second == 0){
-                PlayAudio("../assets/audio/doublebeep.wav")
-            }
-
+    function toggleTimer() {
+      if (isRunning) {
+        clearInterval(timerInterval);
+        playPauseBtn.textContent = "▶Play";
+      } else {
+        timerInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            updateDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isRunning = false;
+            playPauseBtn.textContent = "▶play";
+          }
         }, 1000);
-
-        PlayAudio("../assets/audio/okay_lets_go.wav");
+        playPauseBtn.textContent = "⏸Pause";
+      }
+      isRunning = !isRunning;
     }
 
-    else {
-        clearInterval(countdownId);
-        countdownId=null;
-    }
-
-    isRunning = !isRunning;
-    console.log(isRunning);
-});
-
-function PlayAudio(filename) {
-    new Audio(filename).play();
-}
-
-
+    
+    playPauseBtn.addEventListener("click", toggleTimer);
+    updateDisplay();
