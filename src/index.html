@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./css/spotify.css">
   <link rel="stylesheet" href="./css/day-tracker.css">
   <link rel="stylesheet" href="./css/weather.css">
+  <link rel="stylesheet" href="./css/todo.css">
   <!-- type="module" allows us to import different js file (module), currently -->
   <!-- we are importing another js file so that we can define our settings like port -->
   <!-- and make it accessible to all the js file -->
@@ -14,6 +15,7 @@
   <script defer type="module" src="./js/dayTracker.js"></script>
   <script defer type="module" src="./js/weather.js"></script>
   <script defer type="module" src="./js/github.js"></script>
+  <script defer type="module" src="./js/todo.js"></script>
   <script defer type="module" src="./js/gmail.js"></script>
   <script defer type="module" src="./js/pomodoro.js"></script>
 </head>
@@ -55,6 +57,19 @@
                 </div>
                 <button id="github-login" class="login">Login</button>
             </div>
+        </div>
+
+        <!-- Todo Widget -->
+        <div class="todo-widget">
+            <h3>Todo-List</h3>
+            <ul class="todo-list" id="todo-list">
+
+            </ul>
+
+            <form class="add-task" id="task-form">
+                <input type="text" id="task-input" placeholder="Add a card">
+                <button type="submit">+</button>
+            </form>
         </div>
 
 
