@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Mindless Website</title>
+  <!-- Styles -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/spotify.css">
   <link rel="stylesheet" href="./css/day-tracker.css">
@@ -10,9 +11,7 @@
   <link rel="stylesheet" href="./css/todo.css">
   <link rel="stylesheet" href="./css/todo.css">
   <link rel="stylesheet" href="./css/pomodoro.css">
-  <!-- type="module" allows us to import different js file (module), currently -->
-  <!-- we are importing another js file so that we can define our settings like port -->
-  <!-- and make it accessible to all the js file -->
+  <!-- Scripts -->
   <script defer type="module" src="./js/brain.js"></script> 
   <script defer type="module" src="./js/dayTracker.js"></script>
   <script defer type="module" src="./js/weather.js"></script>
@@ -20,10 +19,8 @@
   <script defer type="module" src="./js/gmail.js"></script>
   <script defer type="module" src="./js/pomodoro.js"></script>
   <script defer type="module" src="./js/todo.js"></script>
-  <script defer type="module" src="./js/pomodoro.js"></script>
 </head>
 <body>
-
 
         <!-- Spotify Widget -->
         <div class="widget-wrapper">
@@ -39,7 +36,7 @@
 
 
         <!-- Github Widget -->
-        <div class="widget-wrapper">
+        <div class="widget-wrapper-tall">
             <div class="widget">
                 <div id="github-widget" class="widget-content">
                     <h2>Github Stats</h2>
@@ -62,6 +59,37 @@
             </div>
         </div>
 
+        <!-- Todo Widget -->
+        <div class="widget-wrapper-tall">
+            <div class="widget">
+                <div id="todo-widget" class="widget-content">
+                    <h1 class="widget-title">Todo</h1>
+
+                    <div id="section-container">
+                        <div class="section">
+                            <h2 class="section-title">Let's Do This Shit</h2>
+                            <ul class="todo-list">
+                                <li class="todo-list-item">This is going great</li>
+                                <li class="todo-list-item">This is going great</li>
+                                <div class="section-add todo-list-item">
+                                    +
+                                </div>
+                            </ul>
+                        </div>
+
+                    <div class="section">
+                        <h2 class="section-title">Let's Do This Shit</h2>
+                        <ul class="todo-list">
+                            <li class="todo-list-item">This is going great</li>
+                            <li class="todo-list-item">This is going great</li>
+                        </ul>
+                    </div>
+                    </div>
+
+                    <button id="todo-add" class="btn">+</button>
+                </div>
+            </div>
+        </div>
 
         <!-- Day Tracker -->
         <div class="widget-wrapper">
@@ -120,19 +148,6 @@
             <li class="day-option-type margin-s" data-option="mid-day"><p>Mid Day</p></li>
             <li class="day-option-type" data-option="bad-day"><p>Bad Day</p></li>
         </ul>
-
-        <!-- Todo-List -->
-        <div class="todo-widget">
-            <h3>Todo-List</h3>
-                <ul class="todo-list" id="todo-list">
-      
-                </ul>
-
-            <form class="add-task" id="task-form">
-                <input type="text" id="task-input" placeholder="Add a card">
-                <button type="submit">+</button>
-            </form>
-        </div>
 
         <!-- Pomodoro-Widget -->
          <div class="pomodoro-widget">

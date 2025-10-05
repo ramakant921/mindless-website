@@ -49,7 +49,7 @@ function getGithubForks(){
     })
         .then(res => res.json())
         .then(forks => {
-            listRepos(forks);
+            listForks(forks);
         });
 }
 
