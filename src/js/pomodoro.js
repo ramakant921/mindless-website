@@ -1,45 +1,52 @@
-let duration = 25 * 60;
-let timeLeft = duration;
-let timerInterval = null;
+const startPauseBtn = document.getElementById("weather-hero");
+
 let isRunning = false;
+let countdownId = null;
+let min = 0;
+let sec = 15;
+let totalTime = (min * 60) + sec;
 
+startPauseBtn.addEventListener("click", () => {
+    console.log(isRunning);
+    if(!isRunning){
+        countdownId = setInterval(() => {
+            if(totalTime == 0) {
+                const explosionGif = document.createElement("img");
+                explosionGif.src = "./assets/images/explosion.gif?cacheBust=" + new Date().getTime(); 
+                explosionGif.id = "boom-boom";
+                document.body.appendChild(explosionGif);
+                PlayAudio("../assets/audio/explode.wav")
 
-const timerDisplay = document.getElementById("timer");
-const playPauseBtn = document.getElementById("playPause");
-const activeCircle = document.getElementById("activeCircle");
+                clearInterval(countdownId);
+            }
 
+            totalTime -= 1;
 
-function updateDisplay() {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerDisplay.textContent =
-        `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            const minute = Math.floor(totalTime/60);
+            if(minute<0) minute = 0;
+            const second = totalTime%60;
 
-      const progress = (duration - timeLeft) / duration;
-      const clipValue = 100 - progress * 100;
-      activeCircle.style.clipPath = `inset(${clipValue}% 0 0 0)`;
-    }
+            console.log(minute + ":" + second);
 
-    function toggleTimer() {
-      if (isRunning) {
-        clearInterval(timerInterval);
-        playPauseBtn.textContent = "▶Play";
-      } else {
-        timerInterval = setInterval(() => {
-          if (timeLeft > 0) {
-            timeLeft--;
-            updateDisplay();
-          } else {
-            clearInterval(timerInterval);
-            isRunning = false;
-            playPauseBtn.textContent = "▶play";
-          }
+            if(totalTime <= 10 && totalTime > 0) PlayAudio("../assets/audio/beep.wav");
+            if(minute == 0 && second == 0){
+                PlayAudio("../assets/audio/doublebeep.wav")
+            }
+
         }, 1000);
-        playPauseBtn.textContent = "⏸Pause";
-      }
-      isRunning = !isRunning;
+
+        PlayAudio("../assets/audio/okay_lets_go.wav");
     }
 
-    
-    playPauseBtn.addEventListener("click", toggleTimer);
-    updateDisplay();
+    else {
+        clearInterval(countdownId);
+        countdownId=null;
+    }
+
+    isRunning = !isRunning;
+    console.log(isRunning);
+});
+
+function PlayAudio(filename) {
+    new Audio(filename).play();
+}

@@ -12,6 +12,8 @@
     --primary-color: black;
     --secondary-color: white;
 
+    --section-color: #4A4A4A;
+
     --pad-m: 1rem;
     --pad-s: 0.5rem;
 
@@ -27,7 +29,60 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 2rem;
+}
+
+.login {
+    display: none;
+    background: white;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.widget-wrapper {
+    width: 350px;
+    max-width: 369px;
+    aspect-ratio: 1/1;
+    margin: 1rem;
+}
+
+.widget-wrapper-tall {
+    max-width: 350px;
+    margin: 1rem;
+}
+
+.widget {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.widget-content {
+    padding: 18px; 
+    box-sizing: border-box;
+}
+
+.widget-title {
+    font-size: 2rem;
     margin: 0;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 .block {
@@ -45,7 +100,7 @@ body {
 
 /* if the content overflow we are scrolling so the header also scrolls so figure that out */
 .section {
-    background: #2c2c2c;
+    background: #4A4A4A;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -53,8 +108,10 @@ body {
     overflow: scroll; 
 }
 
-.section h3 {
-    font-size: 18px;
+.section-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .blocks {
