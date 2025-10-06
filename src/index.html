@@ -68,25 +68,16 @@
                     <div id="section-container">
                         <div class="section">
                             <h2 class="section-title">Let's Do This Shit</h2>
-                            <ul class="todo-list">
+                            <div class="todo-list">
                                 <li class="todo-list-item">This is going great</li>
                                 <li class="todo-list-item">This is going great</li>
-                                <div class="section-add todo-list-item">
-                                    +
-                                </div>
-                            </ul>
+                                <li class="todo-list-item">This is going great ln aotnehu ntahoentuh notehu notheuntoheuntoeh nuth oenuhnote hutnoh euntoh </li>
+                            </div>
+                            <button class="btn todo-add-btn todo-list-item"><div><img src="./assets/images/add.png" class="small-icon invert" alt="+"><p>Add a task</p></div></button>
                         </div>
-
-                    <div class="section">
-                        <h2 class="section-title">Let's Do This Shit</h2>
-                        <ul class="todo-list">
-                            <li class="todo-list-item">This is going great</li>
-                            <li class="todo-list-item">This is going great</li>
-                        </ul>
-                    </div>
                     </div>
 
-                    <button id="todo-add" class="btn">+</button>
+                    <button id="todo-add" class="btn"><img src="./assets/images/add.png" class="medium-icon invert" alt="+"></button>
                 </div>
             </div>
         </div>
@@ -141,14 +132,6 @@
             </div>
         </div>
 
-        <!-- Day Tracker Options -->
-        <ul id="day-option">
-            <h5 id="day-option-title" >How Was Your Day</h5>
-            <li class="day-option-type" data-option="good-day"><p>Good Day</p></li>
-            <li class="day-option-type margin-s" data-option="mid-day"><p>Mid Day</p></li>
-            <li class="day-option-type" data-option="bad-day"><p>Bad Day</p></li>
-        </ul>
-
         <!-- Pomodoro-Widget -->
          <div class="pomodoro-widget">
             <h2>Pomodoro</h2>
@@ -166,6 +149,33 @@
         
             <button class="play-pause" id="playPause">play</button>
         </div>
+
+        <!-- Day Tracker Options -->
+        <ul id="day-option">
+            <h5 id="day-option-title" >How Was Your Day</h5>
+            <li class="day-option-type" data-option="good-day"><p>Good Day</p></li>
+            <li class="day-option-type margin-s" data-option="mid-day"><p>Mid Day</p></li>
+            <li class="day-option-type" data-option="bad-day"><p>Bad Day</p></li>
+        </ul>
+
+        <!-- Templates -->
+        <template id="todo-section-template">
+            <div id="section-container">
+                <div class="section">
+                    <h2 class="section-title"></h2>
+                    <div class="todo-list">
+                    </div>
+                    <button class="btn todo-add-btn todo-list-item"> <img src="./assets/images/add.png" class="small-icon invert" alt="+"> Add a task</button>
+                </div>
+            </div>
+        </template>
+
+        <template id="input-form-template">
+            <form id="input-form">
+                <input id="section-title-input" class="section-title" value="Title">
+                <button type="submit"></button>
+            </form>
+        </template>
 
     </body>
 </html>

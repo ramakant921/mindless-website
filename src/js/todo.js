@@ -1,125 +1,119 @@
-const todoWidget = document.getElementById("todo-widget");
-const addSectionBtn = document.getElementById("todo-add");
-const addTodo = document.querySelectorAll(".section-add");
+// Worst Code I've written in the whole project
+// Spaghetti code
+// Section
 const sectionContainer = document.getElementById("section-container");
-
-addTodo.forEach(todo => {
-    todo.addEventListener("click", addTodoList);
-});
-
-console.log(addSectionBtn);
-console.log(todoWidget);
-
+const addSectionBtn = document.getElementById("todo-add");
 addSectionBtn.addEventListener("click", addSection);
 
-function addSection(e) {
-    const section = document.createElement("div");
-    section.classList.add("section");
-    section.id = "insert-in-me";
+// Todo
+const todoWidget = document.getElementById("todo-widget");
+const addTodoBtn = document.querySelectorAll(".todo-add-btn");
+addTodoBtn.forEach(todo => {
+    todo.addEventListener("click", addTodo);
+});
 
-    const form = document.createElement("form");
-    form.id = "input-form";
-    const subtitle = document.createElement("input");
-    const formSubmit = document.createElement("button");
-    formSubmit.type = "submit";
-    formSubmit.innerText= "Add";
+// Section
+function addSection() {
+    // Remove Previous Input Form
+    removeInputForm();
 
-    formSubmit.addEventListener("click", (e) => setSectionTitle(e));
-    // formSubmit.addEventListener("click", (e) => {
-    //     e.preventDefault();
-    //     console.log(e);
-    // }
-    // );
+    // Section Template
+    const sectionTemplate = document.getElementById("todo-section-template").content.cloneNode(true);
+    const section = sectionTemplate.querySelector(".section");
 
-    form.appendChild(subtitle);
-    form.appendChild(formSubmit);
+    // Form Template
+    const formTemplate = document.getElementById("input-form-template").content.cloneNode(true);
 
-    subtitle.classList.add("section-title");
-    subtitle.id="section-title-input";
-    subtitle.value="Title";
-    subtitle.focus();
+    const formSubmit = formTemplate.querySelector("button"); 
+    const formInput = formTemplate.querySelector("input"); 
+    formSubmit.addEventListener("click", setSectionTitle);
 
-    // addTodoList()
-    const ul = document.createElement("ul");
-    ul.classList.add("todo-list");
-
-
-    // const todo = e.querySelector("div").closest("todo-list");
-    // console.log(todo);
-
-    const sectionAddTodo = document.createElement("div");
-    sectionAddTodo.classList.add("todo-list-item", "section-add");
-    sectionAddTodo.innerText = "+";
-    sectionAddTodo.addEventListener("submit", console.log("hey"));
-
-    section.appendChild(form);
-    ul.appendChild(sectionAddTodo);
-    section.appendChild(ul);
+    // Append Child
+    const sectionTitle = sectionTemplate.querySelector(".section-title");
+    sectionTitle.replaceWith(formTemplate);
 
     sectionContainer.appendChild(section);
 
-    // Get Section Title
-    const sectionTitle =document.getElementById("section-title-input");
-}
-
-function addSectionBtnFunc (e) {
-    e.addEventListener("click", addTodoList);
+    // Focus The Element At Last
+    formInput.focus();
+    formInput.select();
 }
 
 function setSectionTitle(e) {
     e.preventDefault();
+
+    const todoContainer = e.target.parentNode.parentNode.querySelector(".todo-list");
     const formInput = document.getElementById("input-form");
-    // document.getElementById("section-title-input").focus();
-    // bro is distracted fix him later
     const input = formInput.querySelector("#section-title-input");
     const title = input.value;
-    console.log(formInput);
-    console.log(title);
 
     const sectionTitle = document.createElement("h2");
     sectionTitle.classList.add("section-title");
     sectionTitle.innerText = title;
 
     formInput.replaceWith(sectionTitle);
+
+    addTodo(null, todoContainer);
 }
 
-function addTodoList(e) {
-    console.log(e);
+// ------Todo-------
+function addTodo(e, todoElement) {
+    // Remove Previous Input Form
+    removeInputForm();
+    // if(document.getElementById("input-form")) return
 
-    const todo = e.target.parentNode;
-    console.log(todo);
+    let todo;
+    if(e){
+        todo = e.target.parentNode.querySelector(".todo-list"); 
+    }
+    else {
+        todo = todoElement;
+    }
 
-    const li = document.createElement("li");
-    li.classList.add("todo-list-item");
-    li.innerText = "This is just me testing this shit out";
+    // Form Template
+    const formTemplate = document.getElementById("input-form-template").content.cloneNode(true);
+    formTemplate.querySelector("form").classList.add("margin-top");
 
+    const formSubmit = formTemplate.querySelector("button"); 
+    const formInput = formTemplate.querySelector("input"); 
+    formInput.id = "todo-input";
+    formInput.value = "Write a Task";
+    formInput.classList.add("todo-list-item");
+    formSubmit.addEventListener("click", (e) => setTodoList(e, todo));
 
-    const form = document.createElement("form");
-    form.id = "input-form";
-    const todoItem = document.createElement("input");
-    todoItem.id = "todo-item"
-    const formSubmit = document.createElement("button");
-    formSubmit.type = "submit";
-    formSubmit.innerText= "Add";
+    todo.appendChild(formTemplate);
 
-    formSubmit.addEventListener("click", (e) => setTodoList(e));
+    // Focus The Element At Last
+    formInput.focus();
+    formInput.select();
 
-    form.appendChild(todoItem);
-    form.appendChild(formSubmit);
-    todo.appendChild(form);
+    todo.scrollTo(0, todo.scrollHeight);
+
+    // Remove Input If User Doesn't wanna add todo
+    // setTimeout(() => {
+    //     document.addEventListener("click", removeFormInput, { once: true });
+    // }, 1);
 }
 
-function setTodoList(e){
+function setTodoList(e, todo){
     e.preventDefault();
+
     const formInput = document.getElementById("input-form");
-    // document.getElementById("section-title-input").focus();
-    // bro is distracted fix him later
-    const input = formInput.querySelector("#todo-item");
-    const todoItem = input.value;
+    const input = document.querySelector("#todo-input");
+    const task = input.value;
 
     const li = document.createElement("li");
     li.classList.add("todo-list-item");
-    li.innerText = todoItem;
+    li.innerText = task;
 
     formInput.replaceWith(li);
+    console.log(todo);
+    todo.scrollTo(0, todo.scrollHeight);
+
+    addTodo(null, todo);
+}
+
+function removeInputForm() {
+    const formInput = document.getElementById("input-form");
+    if(formInput) formInput.remove();
 }
