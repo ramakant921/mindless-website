@@ -13,6 +13,7 @@
     --secondary-color: white;
 
     --section-color: #4A4A4A;
+    --section-title: 1rem;
 
     --pad-m: 1rem;
     --pad-s: 0.5rem;
@@ -30,6 +31,7 @@ body {
     align-items: center;
     height: 100vh;
     padding: 2rem;
+    overflow: hidden;
 }
 
 .login {
@@ -44,9 +46,26 @@ body {
 }
 
 .btn {
+    display: flex;
     outline: none;
     border: none;
     border-radius: 10px;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.small-icon {
+    width: 20px;
+}
+
+.medium-icon{
+    width: 30px;
+}
+
+.large-icon{
+    width: 40px;
 }
 
 .widget-wrapper {
@@ -85,6 +104,22 @@ body {
     font-weight: bold;
 }
 
+.section {
+    background: var(--section-color);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    max-height: 250px;
+    overflow: hidden; 
+    /* overflow: scroll; */
+}
+
+.section-title {
+    font-size: var(--section-title);
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
 .block {
     background: #000;
     color: white;
@@ -98,22 +133,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* if the content overflow we are scrolling so the header also scrolls so figure that out */
-.section {
-    background: #4A4A4A;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    max-height: 25vh;
-    overflow: scroll; 
-}
-
-.section-title {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    text-align: left;
-}
-
 .blocks {
     background: #111;
     padding: 6px 8px;
@@ -122,11 +141,7 @@ body {
     font-size: 16px;
 }
 
-.github-block-title {
-    margin-bottom: 0.2rem;
-    color: var(--secondary-text);
-}
-
+/* Explosion Gif */
 #boom-boom {
     position: absolute;
     top: 50%;
