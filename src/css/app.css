@@ -1,0 +1,35 @@
+body {
+      background-color: #bfbfbf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .social-bar {
+      background-color: #000000;
+      padding: 3px 250px;
+      border-radius: 18px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    } 
+
+    .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #111111;
+        width: auto;
+        height: 30px;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+      opacity: 0.9;
+    }
+    .social-bar img{
+      width: 35px;
+    }
