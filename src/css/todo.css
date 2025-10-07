@@ -9,6 +9,7 @@
 }
 
 .todo-add-btn div{
+    pointer-events: none;
     display: flex;
     align-items: center;
 }
@@ -38,6 +39,22 @@
     transition: background 0.3s;
     height: auto;
     text-align: left;
+}
+
+.todo-list-item:hover {
+    input{
+        display: block;
+    }
+}
+
+.todo-item-div {
+    display: flex;
+}
+
+.todo-item-div input {
+    display: none;
+    margin-right: 0.5rem;
+    width: 1rem;
 }
 
 .todo-list-item:nth-child(1) {

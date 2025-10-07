@@ -1,18 +1,63 @@
-// Worst Code I've written in the whole project
-// Spaghetti code
+// The Worst Code I've written in this whole project
+//
+// ----------querySelectors----------
 // Section
 const sectionContainer = document.getElementById("section-container");
 const addSectionBtn = document.getElementById("todo-add");
 addSectionBtn.addEventListener("click", addSection);
 
-// Todo
-const todoWidget = document.getElementById("todo-widget");
-const addTodoBtn = document.querySelectorAll(".todo-add-btn");
-addTodoBtn.forEach(todo => {
-    todo.addEventListener("click", addTodo);
-});
+// ----------Run Code----------
+loadData();
 
-// Section
+// ----------Functions----------
+//
+// Load Data From LocalStorage
+function loadData() {
+  const sections = JSON.parse(localStorage.getItem("todo"));
+  if (!sections) return;
+
+  const sectionContainer = document.getElementById("section-container");
+
+    sections.forEach(sectionObj => {
+        // Clone Section Template
+        const sectionTemplate = document
+            .getElementById("todo-section-template")
+            .content.cloneNode(true);
+
+        const section = sectionTemplate.querySelector(".section");
+        section.id = sectionObj.id;
+        section.querySelector(".section-title").innerText = sectionObj.title;
+
+        // Get todo list container
+        const todoList = section.querySelector(".todo-list");
+
+        // Loop through todos
+        sectionObj.elements.forEach(todo => {
+            const listItemTemplate = document
+                .getElementById("todo-list-item-template")
+                .content.cloneNode(true);
+            const listItem = listItemTemplate.querySelector(".todo-list-item");
+            const listInput = listItemTemplate.querySelector(".isCompleted");
+            const listItemText = listItem.querySelector(".text");
+
+            listItemText.innerText = todo;
+
+            listInput.addEventListener("change", () => removeTodoItem(section.id, todo, listItem));
+
+            todoList.appendChild(listItem);
+        });
+
+        sectionContainer.appendChild(section);
+    });
+
+    // addEventListener 
+    const addTodoBtn = document.querySelectorAll(".todo-add-btn");
+    addTodoBtn.forEach(todo => {
+        todo.addEventListener("click", addTodo);
+    });
+}
+
+// -----Section------
 function addSection() {
     // Remove Previous Input Form
     removeInputForm();
@@ -20,13 +65,15 @@ function addSection() {
     // Section Template
     const sectionTemplate = document.getElementById("todo-section-template").content.cloneNode(true);
     const section = sectionTemplate.querySelector(".section");
+    const uuid = generateSectionId(); // assign random id to manipulate todo data
+    section.id = uuid;
 
     // Form Template
     const formTemplate = document.getElementById("input-form-template").content.cloneNode(true);
 
     const formSubmit = formTemplate.querySelector("button"); 
     const formInput = formTemplate.querySelector("input"); 
-    formSubmit.addEventListener("click", setSectionTitle);
+    formSubmit.addEventListener("click", (e) => setSectionTitle(e, uuid));
 
     // Append Child
     const sectionTitle = sectionTemplate.querySelector(".section-title");
@@ -39,7 +86,7 @@ function addSection() {
     formInput.select();
 }
 
-function setSectionTitle(e) {
+function setSectionTitle(e, uuid) {
     e.preventDefault();
 
     const todoContainer = e.target.parentNode.parentNode.querySelector(".todo-list");
@@ -53,11 +100,20 @@ function setSectionTitle(e) {
 
     formInput.replaceWith(sectionTitle);
 
+    // Store Section Data To LocalStorage
+    saveSection(title, uuid);
+
+    // addEventListener 
+    const addTodoBtn = document.querySelectorAll(".todo-add-btn");
+    addTodoBtn.forEach(todo => {
+        todo.addEventListener("click", addTodo);
+    });
+
     addTodo(null, todoContainer);
 }
 
 // ------Todo-------
-function addTodo(e, todoElement) {
+function addTodo(e, todoElement=null) {
     // Remove Previous Input Form
     removeInputForm();
     // if(document.getElementById("input-form")) return
@@ -86,7 +142,6 @@ function addTodo(e, todoElement) {
     // Focus The Element At Last
     formInput.focus();
     formInput.select();
-
     todo.scrollTo(0, todo.scrollHeight);
 
     // Remove Input If User Doesn't wanna add todo
@@ -102,18 +157,70 @@ function setTodoList(e, todo){
     const input = document.querySelector("#todo-input");
     const task = input.value;
 
-    const li = document.createElement("li");
-    li.classList.add("todo-list-item");
-    li.innerText = task;
+    const listItemTemplate = document
+        .getElementById("todo-list-item-template")
+        .content.cloneNode(true);
+    const listItem = listItemTemplate.querySelector(".todo-list-item");
+    console.log(listItem);
+    const listItemText = listItem.querySelector(".text");
+    listItemText.innerText = task;
 
-    formInput.replaceWith(li);
-    console.log(todo);
+    // Store Todo in LocalStorage
+    const sectionId = todo.parentNode.id;
+    saveTodo(sectionId, task);
+
+    // isCompleted Checkbox Event Listener
+    const listInput = listItemTemplate.querySelector(".isCompleted");
+    listInput.addEventListener("change", () => removeTodoItem(sectionId, task, listItem));
+
+    formInput.replaceWith(listItem);
     todo.scrollTo(0, todo.scrollHeight);
 
+
     addTodo(null, todo);
+}
+
+function removeTodoItem(sectionId, text, listItem) {
+  listItem.remove();
+
+  let sections = JSON.parse(localStorage.getItem("todo"));
+  const section = sections.find(obj => obj.id == sectionId);
+  section.elements = section.elements.filter(t => t.trim() != text.trim());
+  localStorage.setItem("todo", JSON.stringify(sections));
 }
 
 function removeInputForm() {
     const formInput = document.getElementById("input-form");
     if(formInput) formInput.remove();
+}
+
+function generateSectionId() {
+    return Math.random().toString(36).slice(2, 11);
+}
+
+// -------LocalStorage-------
+function saveSection(title, id) {
+    const data = {
+        id,
+        title,
+        elements:[]
+    }
+
+    let sections = JSON.parse(localStorage.getItem("todo"));
+    if(sections) {
+        sections.push(data);
+    }
+    else {
+       sections = [ data ]
+    }
+
+    localStorage.setItem("todo", JSON.stringify(sections));
+}
+
+function saveTodo(sectionId, todo) {
+    let sections = JSON.parse(localStorage.getItem("todo"));
+    let section = sections.find(obj => obj.id == sectionId)
+    section.elements.push(todo);
+    
+    localStorage.setItem("todo", JSON.stringify(sections));
 }
