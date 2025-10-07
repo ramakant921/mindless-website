@@ -7,10 +7,10 @@ fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
 .then(res => res.json())
 .then(data => {
     if (data.authenticated) {
-        console.log("fetching spotify data");
+        // console.log("fetching spotify data");
         fetchCurrentTrack();
     } else {
-        console.log("bruhhh login to spotify");
+        // console.log("bruhhh login to spotify");
         showSpotifyLogin();
     }
 });

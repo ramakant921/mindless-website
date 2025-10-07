@@ -1,6 +1,5 @@
 let date = new Date();
 let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-console.log(firstDay);
 
 // Run
 listDays();
@@ -20,12 +19,10 @@ function listDays(){
         storeData();
     }
     const data = retrieveData();
-    console.log("running")
 
     // pad inital empty days
     let emptyDays=1;
     for(; emptyDays<firstDay; ++emptyDays){
-        console.log(emptyDays);
         const cell = document.createElement("div");
         cell.classList.add("day-cell", "disabled-day");
 

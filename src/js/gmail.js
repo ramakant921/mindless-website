@@ -10,7 +10,7 @@ fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
         console.log("fetching google data");
         getGmailInbox();
     } else {
-        console.log("bruhhh login to google");
+        // console.log("bruhhh login to google");
         // showGoogleLogin();
     }
 });
@@ -29,7 +29,7 @@ fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
 //         window.location.href = `http://localhost:${setting.port}/github/login`;
 //     };
 // }
-console.log(`http://localhost:${setting.port}/google/login`)
+// console.log(`http://localhost:${setting.port}/google/login`)
 
 function getGmailInbox(){
     fetch(`http://127.0.0.1:${setting.port}/google/inbox`, {
