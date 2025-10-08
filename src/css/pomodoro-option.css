@@ -1,36 +1,28 @@
-body {
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+.container {
+    background: white;
+    color: black;
+    padding: 25px 30px;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
 
-    .container {
-        background: white;
-        color: black;
-        padding: 25px 30px;
-        border-radius: 15px;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2px;
-    }
+.analog {
+    font-size: 25px;
+}
 
-    .analog {
-        font-size: 25px;
-    }
-
-    .time {
-        font-size: 20px;
-        background: black;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 8px;
-    }
+.time {
+    font-size: 20px;
+    background: black;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+}
 
     .colon {
         font-size: 30px;
-    }  
+    }
