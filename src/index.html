@@ -1,143 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mindless Website</title>
-  <!-- Styles -->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/spotify.css">
-  <link rel="stylesheet" href="./css/day-tracker.css">
-  <link rel="stylesheet" href="./css/weather.css">
-  <link rel="stylesheet" href="./css/todo.css">
-  <link rel="stylesheet" href="./css/todo.css">
-  <link rel="stylesheet" href="./css/pomodoro.css">
-  <link rel="stylesheet" href="./css/app.css">
-  <!-- Scripts -->
-  <script defer type="module" src="./js/brain.js"></script> 
-  <script defer type="module" src="./js/dayTracker.js"></script>
-  <script defer type="module" src="./js/weather.js"></script>
-  <script defer type="module" src="./js/github.js"></script>
-  <script defer type="module" src="./js/gmail.js"></script>
-  <script defer type="module" src="./js/pomodoro.js"></script>
-  <script defer type="module" src="./js/todo.js"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mindless Website</title>
+        <!-- Styles -->
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/spotify.css">
+        <link rel="stylesheet" href="./css/day-tracker.css">
+        <link rel="stylesheet" href="./css/weather.css">
+        <link rel="stylesheet" href="./css/todo.css">
+        <link rel="stylesheet" href="./css/todo.css">
+        <link rel="stylesheet" href="./css/pomodoro.css">
+        <link rel="stylesheet" href="./css/app.css">
+        <link rel="stylesheet" href="./css/layout.css">
+        <!-- Scripts -->
+        <script defer type="module" src="./js/brain.js"></script> 
+        <script defer type="module" src="./js/dayTracker.js"></script>
+        <script defer type="module" src="./js/weather.js"></script>
+        <script defer type="module" src="./js/github.js"></script>
+        <script defer type="module" src="./js/gmail.js"></script>
+        <script defer type="module" src="./js/pomodoro.js"></script>
+        <script defer type="module" src="./js/todo.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="grid">
+                <div id="grid-left">
 
-        <!-- Spotify Widget -->
-        <div class="widget-wrapper">
-            <div class="widget">
-                <div id="spotify-widget" class="widget-content">
-                    <h1 class="widget-title">Spotify</h1>
-                    <p id="now-playing" >Now Playing</p>
-                    <div id="cover-wrapper"></div>
+                    <!-- Weather-widget -->
+                    <div class="widget-wrapper">
+                        <div class="widget">
+                            <div id="spotify-widget" class="widget-content">
+                                <h2>Weather</h2>
+
+                                <div id="weather-hero">
+                                    <img id="weather-icon" src="assets/images/weather.svg">
+                                    <div id="weather-data">
+                                        <div class="unit">CELSIUS</div>
+                                        <div id="temp" class="temperature">27</div>
+                                    </div>
+                                </div>
+                                <div id="location" class="location">Prayagraj, India</div>
+
+                                <div class="bottom">
+                                    <div class="item">
+                                        <img src="/assets/images/wind.svg">
+                                        <div class="item-flex">
+                                            <p id="wind-speed">wah</p>
+                                            <span>Wind Speed</span>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="assets/images/water.svg">
+                                        <div class="item-flex">
+                                            <p id="humidity">wah</p>
+                                            <span>Humidity</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Spotify Widget -->
+                    <div class="widget-wrapper">
+                        <div class="widget">
+                            <div id="spotify-widget" class="widget-content">
+                                <h1 class="widget-title">Spotify</h1>
+                                <p id="now-playing" >Now Playing</p>
+                                <div id="cover-wrapper"></div>
+                            </div>
+                            <button id="spotify-login" class="login">Login</button>
+                        </div>
+                    </div>
+
+                    <!-- Day Tracker -->
+                    <div class="widget-wrapper">
+                        <div class="widget">
+                            <div id="tracker-widget" class="widget">
+                                <h1 id="tracker-title" class="widget-title">Day Tracker</h1>
+
+                                <div id="day-tracker-grid">
+                                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                                </div>
+
+                                <div id="legends">
+                                    <div><div id="legend-good" class="legend"></div> Good</div>
+                                    <div><div id="legend-mid" class="legend"></div> Mid</div>
+                                    <div><div id="legend-bad" class="legend"></div> Bad</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pomodoro-Widget -->
+                    <div class="widget-wrapper">
+                        <div class="widget">
+                            <div id="pomodoro-widget" class="widget-content">
+                                <h2>Pomodoro</h2>
+                                <div class="circle">
+                                    <img src="assets/images/elapsed.svg" id="dullCircle">
+                                    <img src="assets/images/elapsed1.svg" id="activeCircle" style="clip-path: circle(50% at 50% 50%);">
+                                    <div class="time" id="timer">25:00</div>
+                                </div>
+
+                                <div class="bottom-row">
+                                    <div class="icon"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
+                                    <div>Work</div>
+                                    <div>H</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Social Widget -->
+                <div id="social-widget">
+                    <div class="icon-whatsapp"><img src="assets/images/whatsapp.svg"></div>
+                    <div class="icon-github"><img src="assets/images/github.svg"></div>
+                    <div class="icon-instagram"><img src="assets/images/Instagram.svg"></div>
+                    <div class="icon-instagram"><img src="assets/images/plus.svg"></div>
                 </div>
-                <button id="spotify-login" class="login">Login</button>
-            </div>
-        </div>
+                </div>
 
+            <div id="grid-right">
+                <!-- Github Widget -->
+                <div class="widget-wrapper-tall">
+                    <div class="widget">
+                        <div id="github-widget" class="widget-content">
+                            <h2>Github Stats</h2>
 
-        <!-- Github Widget -->
-        <div class="widget-wrapper-tall">
-            <div class="widget">
-                <div id="github-widget" class="widget-content">
-                    <h2>Github Stats</h2>
+                            <div id="github-repo" class="section">
+                                <h3>📚 Latest Repositories</h3>
+                            </div>
 
-                    <div id="github-repo" class="section">
-                        <h3>📚 Latest Repositories</h3>
-                    </div>
+                            <div id="github-fork" class="section">
+                                <h3>💡 Forked Repositories</h3>
+                            </div>
 
-                    <div id="github-fork" class="section">
-                        <h3>💡 Forked Repositories</h3>
-                    </div>
-
-                    <div id="github-inbox" class="section">
-                        <h3>📬 Inbox</h3>
+                            <div id="github-inbox" class="section">
+                                <h3>📬 Inbox</h3>
+                            </div>
+                        </div>
+                        <button id="github-login" class="login">Login</button>
                     </div>
                 </div>
-                <button id="github-login" class="login">Login</button>
-            </div>
-        </div>
 
-        <!-- Todo Widget -->
-        <div class="widget-wrapper-tall">
-            <div class="widget">
-                <div id="todo-widget" class="widget-content">
-                    <h1 class="widget-title">Todo</h1>
+                <!-- Todo Widget -->
+                <div class="widget-wrapper-tall">
+                    <div class="widget">
+                        <div id="todo-widget" class="widget-content">
+                            <h1 class="widget-title">Todo</h1>
 
-                    <div id="section-container">
-                    </div>
-                    <button id="todo-add" class="btn"><img src="./assets/images/add.png" class="medium-icon invert" alt="+"></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Day Tracker -->
-        <div class="widget-wrapper">
-            <div class="widget">
-                <div id="tracker-widget" class="widget">
-                    <h1 id="tracker-title" class="widget-title">Day Tracker</h1>
-
-                    <div id="day-tracker-grid">
-                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-                    </div>
-
-                    <div id="legends">
-                        <div><div id="legend-good" class="legend"></div> Good</div>
-                        <div><div id="legend-mid" class="legend"></div> Mid</div>
-                        <div><div id="legend-bad" class="legend"></div> Bad</div>
+                            <div id="todo-container">
+                            </div>
+                            <button id="todo-add" class="btn"><img src="./assets/images/add.png" class="medium-icon invert" alt="+"></button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Weather-widget -->
-        <div class="heading">
-            <h2>Weather</h2>
-
-            <div id="weather-hero">
-                <img id="weather-icon" src="assets/images/weather.svg">
-                <div id="weather-data">
-                    <div class="unit">CELSIUS</div>
-                    <div id="temp" class="temperature">27</div>
-                </div>
             </div>
-            <div id="location" class="location">Prayagraj, India</div>
+        </div> 
 
-            <div class="bottom">
-                <div class="item">
-                    <img src="/assets/images/wind.svg">
-                    <div class="item-flex">
-                        <p id="wind-speed">wah</p>
-                        <span>Wind Speed</span>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="assets/images/water.svg">
-                    <div class="item-flex">
-                        <p id="humidity">wah</p>
-                        <span>Humidity</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Pomodoro-Widget -->
-         <div class="pomodoro-widget">
-            <h2>Pomodoro</h2>
-            <div class="circle">
-              <img src="assets/images/elapsed.svg" id="dullCircle">
-              <img src="assets/images/elapsed1.svg" id="activeCircle" style="clip-path: circle(50% at 50% 50%);">
-              <div class="time" id="timer">25:00</div>
-            </div>
-        
-            <div class="bottom-row">
-              <div class="icon"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
-              <div>Work</div>
-              <div>H</div>
-            </div>
-        
-            <button class="play-pause" id="playPause">play</button>
-        </div>
 
         <!-- Day Tracker Options -->
         <ul id="day-option">

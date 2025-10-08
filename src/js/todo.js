@@ -2,7 +2,7 @@
 //
 // ----------querySelectors----------
 // Section
-const sectionContainer = document.getElementById("section-container");
+const sectionContainer = document.getElementById("todo-container");
 const addSectionBtn = document.getElementById("todo-add");
 addSectionBtn.addEventListener("click", addSection);
 
@@ -16,7 +16,7 @@ function loadData() {
   const sections = JSON.parse(localStorage.getItem("todo"));
   if (!sections) return;
 
-  const sectionContainer = document.getElementById("section-container");
+  const sectionContainer = document.getElementById("todo-container");
 
     sections.forEach(sectionObj => {
         // Clone Section Template
