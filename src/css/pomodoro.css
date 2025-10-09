@@ -1,4 +1,8 @@
-.pomodoro-widget {
+:root {
+    --stroke-width: 6px;
+}
+#pomodoro-widget {
+    position: relative;
     background: #000000;
     color: #fff;
     width: 300px;
@@ -6,33 +10,26 @@
     border-radius: 12px;
     text-align: center;
     padding: 15px;
-    position: relative;
 }
 
-.pomodoro-widget h2 {
+#pomodoro-widget h2 {
     margin: 0;
     font-size: 18px;
 }
 
 .circle {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 80%;
+    height: 80%;
     margin: 15px auto;
 }
 
-.circle img {
+#timer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 140px;
-    height: 140px;
-}
-
-.time {
-    position: absolute;
+    display: flex;
     top: 50%;
     left: 50%;
+    gap: 3px;
     transform: translate(-50%, -50%);
     font-size: 26px;
     font-weight: bold;
@@ -53,21 +50,69 @@
     height: auto;
 }
 
-.play-pause {  
+/* Svg Animation  */
+.pomo-content {
+    position: relative;
+    height: 300px;
+    width: 300px;
+}
+
+.base-timer_circle {
+    fill: none;
+    stroke: none;
+}
+
+.base-timer_path-elapsed {
+    stroke-width: var(--stroke-width);
+    stroke: #404040;
+}
+
+.base-timer_path-remaining {
+    stroke-width: var(--stroke-width);
+    stroke-linecap: round;
+    
+    transform: rotate(90deg);
+    transform-origin: center;
+
+    transition: 1.05s linear all;
+    
+    stroke: white;
+}
+
+.base-timer_svg {
+    transform: scaleX(-1);
+}
+
+/* Pomodoro Option */
+#pomodoro-option{
     position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    border-radius: 50%;
-    border: none;
-    width: 50px;
-    height: 50px;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 30px;
-    display: flex;
+    /* display: flex; */
+    display: none;
     justify-content: center;
     align-items: center;
+    padding: var(--pad-s);
+    background-color: var(--secondary-color);
+    color: black;
+    border-radius: var(--br-mid);
+    gap: var(--pad-s);
+
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.analog {
+    font-size: 1.5rem;
+}
+
+.time {
+    display: inline;
+    background: black;
+    font-size: 1rem;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+}
+
+.colon {
+    font-size: 2rem; 
 }

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./css/pomodoro.css">
         <link rel="stylesheet" href="./css/app.css">
         <link rel="stylesheet" href="./css/layout.css">
+        <link rel="stylesheet" href="./css/github.css">
         <!-- Scripts -->
         <script defer type="module" src="./js/brain.js"></script> 
         <script defer type="module" src="./js/dayTracker.js"></script>
@@ -94,18 +95,36 @@
                     <!-- Pomodoro-Widget -->
                     <div class="widget-wrapper">
                         <div class="widget">
-                            <div id="pomodoro-widget" class="widget-content">
+                            <div id="pomodoro-widget" class="pomo-content widget-content">
                                 <h2>Pomodoro</h2>
                                 <div class="circle">
-                                    <img src="assets/images/elapsed.svg" id="dullCircle">
-                                    <img src="assets/images/elapsed1.svg" id="activeCircle" style="clip-path: circle(50% at 50% 50%);">
-                                    <div class="time" id="timer">25:00</div>
+                                <svg class="base-timer_svg" viewBox="0 0 100 100">
+                                    <g class="base-timer_circle">
+                                    <circle class="base-timer_path-elapsed" cx="50" cy="50" r="45" />
+                                    <path
+                                    id="base-timer-path-remaining"
+                                    stroke-dasharray="0.000001 283"
+                                    class="base-timer_path-remaining"
+                                    d="
+                                    M 50, 50
+                                    m -45, 0
+                                    a 45,45 0 1,0 90,0
+                                    a 45,45 0 1,0 -90,0
+                                    "
+                                    ></path>
+                                    </g>
+                                </svg>
+                                    <div id="timer">
+                                        <span id="pomo-minutes">25</span>
+                                        <span>:</span>
+                                        <span id="pomo-seconds">00</span>
+                                    </div>
                                 </div>
 
                                 <div class="bottom-row">
-                                    <div class="icon"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
+                                    <div class="icon" id="pomo-settings"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
                                     <div>Work</div>
-                                    <div>H</div>
+                                    <div>Min</div>
                                 </div>
                             </div>
                         </div>
@@ -136,11 +155,20 @@
                             </div>
 
                             <div id="github-inbox" class="section">
+<<<<<<< HEAD
                                 <button class="btn">📬Inbox</button>
                                 <button class="btn">📬Email</button>
+=======
+                                <h3>📬 Inbox</h3>
+                                <div id="github-tab">
+                                    <button id="git-inbox" class="btn login">Github</button>
+                                    <button id="email-inbox" class="active btn login">Email</button>
+                                    <button id="email-login" class="login">Gmail Login</button>
+                                </div>
+>>>>>>> 79fbd0235b4a31b24f65b364abd68e3c75da7f78
                             </div>
                         </div>
-                        <button id="github-login" class="login">Login</button>
+                        <button id="github-login" class="login">Git Login</button>
                     </div>
                 </div>
 
@@ -161,7 +189,6 @@
         </div> 
 
 
-
         <!-- Day Tracker Options -->
         <ul id="day-option">
             <h5 id="day-option-title" >How Was Your Day</h5>
@@ -169,6 +196,15 @@
             <li class="day-option-type margin-s" data-option="mid-day"><p>Mid Day</p></li>
             <li class="day-option-type" data-option="bad-day"><p>Bad Day</p></li>
         </ul>
+
+        <!-- Pomodoro Options -->
+        <div id="pomodoro-option">
+            <span class="analog">M</span>
+            <input id="pomo-opt-minutes" class="time" value="12">
+            <span class="colon">:</span>
+            <input id="pomo-opt-seconds" class="time" value="33">
+            <span class="analog">S</span>
+        </div>
 
         <!-- Templates -->
         <template id="todo-section-template">

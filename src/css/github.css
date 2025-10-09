@@ -1,10 +1,13 @@
-#github-widget {
-    /* max-height: 100vh; */
-}
-
 .github-block-title {
     margin-bottom: 0.2rem;
     color: var(--secondary-text);
+}
+
+#github-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .section{

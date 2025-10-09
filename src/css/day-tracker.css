@@ -63,6 +63,7 @@
     border-radius: 50%;
 }
 
+/* Day Tracker Option */
 #day-option {
     position: absolute;
     display: none;

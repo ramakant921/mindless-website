@@ -1,5 +1,17 @@
 import { setting } from './settings.js';
 
+// Change Active Tab (Github/Email) Inbox
+const emailInbox = document.getElementById("email-inbox");
+const githubInbox = document.getElementById("github-inbox");
+
+emailInbox.addEventListener("click", () => {
+    emailInbox.classList.remove("active");
+    githubInbox.classList.remove("active");
+
+    emailInbox.classList.add("active");
+});
+
+
 // check if user's spotify is authenticated
 fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
     credentials: 'include'
