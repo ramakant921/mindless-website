@@ -86,8 +86,8 @@
 /* Pomodoro Option */
 #pomodoro-option{
     position: absolute;
-    display: flex;
-    /* display: none; */
+    /* display: flex; */
+    display: none;
     justify-content: center;
     align-items: center;
     padding: var(--pad-s);

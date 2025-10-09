@@ -1,21 +1,36 @@
 import { setting } from './settings.js';
 
+const activeTab = document.getElementById("git-inbox");
+
+init();
+activeTab.addEventListener("click", () => {
+    console.log("heeee");
+    init();
+});
+
 // check if user's github is authenticated
 fetch(`http://127.0.0.1:${setting.port}/auth/github/status`, {
     credentials: 'include'
 })
-.then(res => res.json())
-.then(data => {
-    if (data.authenticated) {
-        console.log("fetching github data");
-        getGithubRepos();
-        getGithubForks();
-        getGithubInbox();
-    } else {
-        console.log("bruhhh login to github");
-        showGithubLogin();
+    .then(res => res.json())
+    .then(data => {
+        if (data.authenticated) {
+            console.log("fetching github data");
+            getGithubRepos();
+            getGithubForks();
+        } else {
+            // console.log("bruhhh login to github");
+            showGithubLogin();
+        }
+    });
+
+function init() {
+    console.log(activeTab);
+    if(activeTab.classList.contains("active")) {
+            getGithubInbox();
     }
-});
+}
+
 function showGithubLogin() {
     const loginBtn = document.getElementById("github-login");
     const repo = document.getElementById("github-repo");

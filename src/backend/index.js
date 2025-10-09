@@ -135,7 +135,14 @@ app.get('/auth/google/status', (req, res) => {
 });
 
 app.get('/google/inbox', (req, res) => {
-    getGmailInbox(req);
+    getGmailInbox(req)
+        .then(inbox => {
+            // console.log("inbox: ", inbox);
+            res.json(inbox);
+        })
+        .catch(error => {
+            res.status(500).send(error.message);
+        });
 });
 
 app.post('/weather', async (req, res) => {

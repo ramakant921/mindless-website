@@ -1,37 +1,45 @@
 import { setting } from './settings.js';
 
-// check if user's google is authenticated
-fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
-    credentials: 'include'
-})
-.then(res => res.json())
-.then(data => {
-    if (data.authenticated) {
-        console.log("fetching google data");
-        getGmailInbox();
-    } else {
-        // console.log("bruhhh login to google");
-        // showGoogleLogin();
-    }
+const activeTab = document.getElementById("email-inbox");
+init();
+activeTab.addEventListener("click", () => {
+    console.log("heeee");
+    init();
 });
 
-// function showGithubLogin() {
-//     const loginBtn = document.getElementById("github-login");
-//     const repo = document.getElementById("github-repo");
-//     const fork = document.getElementById("github-fork");
-//     const inbox = document.getElementById("github-inbox");
-//     loginBtn.style.display = "block";
-//     repo.style.display = "none";
-//     fork.style.display = "none";
-//     inbox.style.display = "none";
-//
-//     loginBtn.onclick = () => {
-//         window.location.href = `http://localhost:${setting.port}/github/login`;
-//     };
-// }
-// console.log(`http://localhost:${setting.port}/google/login`)
+function init(){
+    console.log(activeTab);
+    if(activeTab.classList.contains("active")) {
+        // check if user's google is authenticated
+        fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.authenticated) {
+                    console.log("fetching google data");
+                    getGmailInbox();
+                } else {
+                    console.log("bruhhh login to google");
+                    showEmailLogin();
+                }
+            });
+    }
+}
+
+function showEmailLogin() {
+    const loginBtn = document.getElementById("email-login");
+    const inbox = document.getElementById("github-inbox");
+    loginBtn.style.display = "block";
+
+    loginBtn.onclick = () => {
+        window.location.href = `http://localhost:${setting.port}/google/login`;
+    };
+}
+console.log(`http://localhost:${setting.port}/google/login`)
 
 function getGmailInbox(){
+    console.log("hey");
     fetch(`http://127.0.0.1:${setting.port}/google/inbox`, {
         method: 'GET',
         credentials: 'include'
@@ -46,7 +54,7 @@ function getGmailInbox(){
 function listGmailInbox(inbox) {
     inbox.map(notification => {
         // Grab gmail-inbox section
-        const section = document.getElementById("gmail-inbox");
+        const section = document.getElementById("github-inbox");
 
         const block = document.createElement("div");
         block.classList.add("blocks");
@@ -56,8 +64,8 @@ function listGmailInbox(inbox) {
 
         const blockMsg = document.createElement("p");
 
-        blockRepo.innerText = notification.repo;
-        blockMsg.innerText = notification.title;
+        blockRepo.innerText = notification.subject;
+        blockMsg.innerText = notification.snippet;
 
         // append blockRepoTitle to block 
         block.appendChild(blockRepo);
