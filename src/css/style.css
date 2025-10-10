@@ -159,10 +159,11 @@ body {
 #cursor {
     position: absolute;
     display: none;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     z-index: 6969;
     pointer-events: none;
+    will-change: transform;
 }
 
 #cursor img {
