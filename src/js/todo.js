@@ -36,7 +36,7 @@ function loadData() {
             const listItemTemplate = document
                 .getElementById("todo-list-item-template")
                 .content.cloneNode(true);
-            const listItem = listItemTemplate.querySelector(".todo-list-item");
+            const listItem = listItemTemplate.querySelector(".section-list-item");
             const listInput = listItemTemplate.querySelector(".isCompleted");
             const listItemText = listItem.querySelector(".text");
 
@@ -134,7 +134,7 @@ function addTodo(e, todoElement=null) {
     const formInput = formTemplate.querySelector("input"); 
     formInput.id = "todo-input";
     formInput.value = "Write a Task";
-    formInput.classList.add("todo-list-item");
+    formInput.classList.add("section-list-item");
     formSubmit.addEventListener("click", (e) => setTodoList(e, todo));
 
     todo.appendChild(formTemplate);
@@ -160,7 +160,7 @@ function setTodoList(e, todo){
     const listItemTemplate = document
         .getElementById("todo-list-item-template")
         .content.cloneNode(true);
-    const listItem = listItemTemplate.querySelector(".todo-list-item");
+    const listItem = listItemTemplate.querySelector(".section-list-item");
     console.log(listItem);
     const listItemText = listItem.querySelector(".text");
     listItemText.innerText = task;

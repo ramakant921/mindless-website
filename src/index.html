@@ -26,7 +26,7 @@
     <body>
         <!-- Custom Cursor -->
         <div id="cursor">
-            <img src="./assets/images/cursor.png">
+            <img class="invert" src="./assets/images/cursor.png">
         </div>
 
         <div id="container">
@@ -172,20 +172,40 @@
                             <div id="github-widget" class="widget-content">
                                 <h2 class="widget-title">Github</h2>
 
-                                <div id="github-repo" class="section">
-                                    <h3>📚 Latest Repositories</h3>
-                                </div>
+                                <div id="github-grid">
+                                    <!-- Latest Repositories -->
+                                    <div class="section">
+                                        <div class="git-section-title">
+                                            <img src="./assets/images/git-repo.png" alt="">
+                                            <h2 class="section-title">Latest Repositories</h2>
+                                        </div>
+                                        <div id="github-repo" class="section-list">
+                                        </div>
+                                    </div>
 
-                                <div id="github-fork" class="section">
-                                    <h3>💡 Forked Repositories</h3>
-                                </div>
+                                    <!-- Forked Repositories -->
+                                    <div class="section">
+                                        <div class="git-section-title">
+                                            <img src="./assets/images/git-fork.png" alt="">
+                                            <h2 class="section-title">Forked Repositories</h2>
+                                        </div>
+                                        <div id="github-fork" class="section-list">
+                                        </div>
+                                    </div>
 
-                                <div id="github-inbox" class="section">
-                                    <h3>📬 Inbox</h3>
-                                    <div id="github-tab">
-                                        <button id="git-inbox" class="btn login">Github</button>
-                                        <button id="email-inbox" class="active btn login">Email</button>
-                                        <button id="email-login" class="login">Gmail Login</button>
+                                    <!-- Inbox -->
+                                    <div class="section">
+                                        <div class="git-section-title">
+                                            <img src="./assets/images/git-inbox.png" alt="">
+                                            <h2 class="section-title">Inbox</h2>
+                                        </div>
+                                        <div id="github-tab">
+                                            <button id="git-inbox" class="btn login">Github</button>
+                                            <button id="email-inbox" class="active btn login">Email</button>
+                                            <button id="email-login" class="login">Gmail Login</button>
+                                        </div>
+                                        <div id="github-inbox" class="section-list">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +254,7 @@
                     <h2 class="section-title"></h2>
                     <div class="todo-list">
                     </div>
-                    <button class="btn todo-add-btn todo-list-item"><div><img src="./assets/images/add.png" class="small-icon invert" alt="+"><p>Add a task</p></div></button>
+                    <button class="btn todo-add-btn section-list-item"><div><img src="./assets/images/add.png" class="small-icon invert" alt="+"><p>Add a task</p></div></button>
                 </div>
             </div>
         </template>
@@ -247,7 +267,7 @@
         </template>
 
         <template id="todo-list-item-template">
-            <li class="todo-list-item">
+            <li class="section-list-item">
                 <div class="todo-item-div">
                     <input title="Mark Complete" class="isCompleted" type="checkbox">
                     <p class="text">This is going great</p>

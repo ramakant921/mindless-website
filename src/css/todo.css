@@ -26,7 +26,7 @@
     max-height: 145px;
 }
 
-.todo-list-item {
+.section-list-item {
     background: black;
     margin-top: 0.6rem;
     padding: 10px;
@@ -39,7 +39,7 @@
     text-align: left;
 }
 
-.todo-list-item:hover {
+.section-list-item:hover {
     input{
         display: block;
     }
@@ -55,11 +55,11 @@
     width: 1rem;
 }
 
-.todo-list-item:nth-child(1) {
+.section-list-item:nth-child(1) {
     margin-top: 0;
 }
 
-.todo-list-item:hover {
+.section-list-item:hover {
     background: #333;
 }
 

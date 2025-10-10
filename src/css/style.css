@@ -104,18 +104,24 @@ body {
 }
 
 .section {
+    display: flex;
+    flex-direction: column;
     background: var(--section-color);
     padding: 1rem;
     border-radius: 10px;
     margin-bottom: 1rem;
-    /* max-height: 250px; */
     overflow: hidden; 
 }
 
 .section-title {
     font-size: var(--section-title);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
     text-align: left;
+}
+
+.section-list {
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .block {
@@ -123,7 +129,7 @@ body {
     color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 250px;
+    /* width: 250px; */
 }
 
 .block h2 {
@@ -137,6 +143,7 @@ body {
     border-radius: 8px;
     margin-bottom: 6px;
     font-size: 16px;
+    text-align: left;
 }
 
 /* Explosion Gif */
@@ -151,6 +158,7 @@ body {
 /* Custom Cursor */
 #cursor {
     position: absolute;
+    display: none;
     width: 30px;
     height: 30px;
     z-index: 6969;

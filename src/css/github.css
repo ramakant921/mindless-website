@@ -1,3 +1,12 @@
+#github-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(200px, 1fr));
+    /* grid-template-rows: auto auto auto; */
+    max-height: 100vh;
+
+}
+
 .github-block-title {
     margin-bottom: 0.2rem;
     color: var(--secondary-text);
@@ -11,10 +20,25 @@
 }
 
 .section{
-    display: flex;
-    gap: 12px;
-    margin-bottom: 15px;
+    max-height: 25vh;
+    margin-bottom: 1rem;
 }
+
+.git-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.git-section-title .section-title {
+    margin-bottom: 0;
+}
+
+.git-section-title img {
+    width: 1.2rem;
+}
+
 .btn{
     background-color: #2c2c2e;
       color: white;

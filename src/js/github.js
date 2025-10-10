@@ -86,7 +86,7 @@ function listRepos(repos) {
 
         // dynamically create div and add class and text
         const block = document.createElement("div");
-        block.classList.add("blocks");
+        block.classList.add("section-list-item");
         block.innerText = repo;
 
         // append block to github-repo section
