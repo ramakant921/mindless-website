@@ -10,10 +10,11 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding: var(--grid-gap);
+    /* padding: var(--grid-gap); */
     /* flex: 0 1 200px; */
     /* size: ; */
     /* padding: 7rem var(--grid-gap); */
+    padding: var(--grid-gap) 7rem;
 }
 
 /* --------------- Grid --------------- */
@@ -47,3 +48,38 @@
     aspect-ratio: 1 / 1;
 }
 
+/* Settings */
+#settings-relative {
+    position: relative;
+}
+#settings {
+    position: absolute;
+    top: -2.69rem;
+    left: -2.69rem;
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 0.7rem;
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    /* background-color: var(--section-color); */
+}
+
+#settings-inner {
+    display: grid;
+    place-items: center;
+    background-color: var(--primary-color);
+    padding: 0.6rem;
+    border-radius: 10px;
+}
+
+#settings-inner img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+#settings-inner img:hover {
+    transform: rotateZ(180deg);
+}

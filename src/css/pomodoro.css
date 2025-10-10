@@ -1,20 +1,17 @@
 :root {
     --stroke-width: 6px;
 }
-#pomodoro-widget {
-    position: relative;
-    background: #000000;
-    color: #fff;
-    width: 300px;
-    height: 300px;
-    border-radius: 12px;
-    text-align: center;
-    padding: 15px;
-}
 
-#pomodoro-widget h2 {
-    margin: 0;
-    font-size: 18px;
+/* Nothing Was Needed */
+#pomodoro-widget {
+    /* position: relative; */
+    /* background: #000000; */
+    /* color: #fff; */
+    /* width: 300px; */
+    /* height: 300px; */
+    /* border-radius: 12px; */
+    /* text-align: center; */
+    /* padding: 15px; */
 }
 
 .circle {

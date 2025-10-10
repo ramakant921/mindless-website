@@ -31,10 +31,12 @@
 }
 
 .day-cell {
+    aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
-    width: 24px;
-    height: 24px;
+    max-width: 24px;
+    max-height: 24px;
+    /* width: 14%; */
     border-radius: 6px;
     cursor: pointer;
 }
