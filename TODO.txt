@@ -1,0 +1,5 @@
+_____________TODO____________
+>> Spotify-Widget
+> Auto Refresh
+> Inline Huge Text 
+

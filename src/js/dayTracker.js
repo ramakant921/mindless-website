@@ -1,4 +1,5 @@
 let date = new Date();
+let today = date.getDate();
 let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
 // Run
@@ -35,14 +36,24 @@ function listDays(){
         let cell = document.createElement("div");
         if(data[idx]) {
             if(data[idx] == "good-day"){
-                const trophy = document.createElement("img");
-                trophy.src = "../assets/images/trophy.png";
-                cell.appendChild(trophy);
+                addTrophy(cell);
             }
             cell.classList.add("day-cell", data[idx]);
         }
         else cell.classList.add("day-cell", "vacant-day");
         cell.dataset.date = idx;
+        
+        if(idx==today) {
+            if(cell.classList.contains("vacant-day")){
+                cell.classList.add("today");
+                cell.innerText = "?";
+                cell.title = "Input Today's Data";
+            }
+        }
+
+        if(idx > today) {
+            cell.classList.add("action-not-allowed")
+        }
 
         cell.addEventListener("click", showOptions);
 
@@ -76,13 +87,21 @@ function showOptions(day) {
     document.addEventListener("click", hideOptions, { once: true });
 }
 
+function addTrophy(day){
+        const trophy = document.createElement("img");
+        trophy.src = "../assets/images/trophy.png";
+        trophy.style.pointerEvents = "none";
+        trophy.style.opacity = 0.9;
+        day.appendChild(trophy);
+}
+
 function setDayType(selectedType, day) {
+    day.innerText=""; // remove the ? from today's cell
+    day.classList.remove("today");
     day.classList.remove("good-day", "mid-day", "bad-day", "vacant-day");
     day.classList.add(selectedType);
     if(selectedType == "good-day") {
-        const trophy = document.createElement("img");
-        trophy.src = "../assets/images/trophy.png";
-        day.appendChild(trophy);
+        addTrophy(day);
     }
 
     updateData(day.dataset.date, selectedType);
