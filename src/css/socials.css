@@ -1,0 +1,31 @@
+#social-widget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 3px 250px;
+    border-radius: 18px;
+    background-color: black;
+} 
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform-origin: center;
+}
+
+.social-icon:hover {
+    transform: scale(1.1) translateY(-3px);
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.social-icon img{
+    width: 35px;
+    height: 35px;
+}
