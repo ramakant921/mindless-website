@@ -27,6 +27,7 @@
     /* height: 100%; */
 }
 
+
 #grid-left, #grid-right {
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
@@ -45,9 +46,18 @@
     height: 3rem;
     grid-column: 1 / span 2;
 }
+@media(max-width: 1440px){
+    #social-widget{
+        display: none;
+        flex-grow: 0;
+        margin-left: auto;
+        margin-right: 1.5rem;
+    }
+}
 
 .square-widget {
     aspect-ratio: 1 / 1;
+    width: fit-content;
 }
 
 /* Settings */
