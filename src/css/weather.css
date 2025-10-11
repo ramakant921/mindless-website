@@ -8,7 +8,18 @@
 }
 
 .cloud {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+    justify-content: center;
     color: #555555;
+    
+}
+@media(max-width:1440){
+    .cloud{
+       scroll-padding-left:12px ; 
+       flex-direction: column;
+    }
 }
 
 .unit {
