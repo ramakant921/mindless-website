@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./css/layout.css">
         <!-- Scripts -->
         <script defer type="module" src="./js/brain.js"></script> 
-        <!-- <script defer type="module" src="./js/dayTracker.js"></script> -->
+        <script defer type="module" src="./js/dayTracker.js"></script>
         <script defer type="module" src="./js/weather.js"></script>
         <!-- <script defer type="module" src="./js/github.js"></script> -->
         <script defer type="module" src="./js/gmail.js"></script>
@@ -34,11 +34,11 @@
                 <div id="grid-left">
 
                     <!-- Weather-widget -->
-                    <div id="weather-widget" class=" widget square-widget widget-content">
+                    <div id="weather-widget" class="widget square-widget widget-content">
                         <h2 class="widget-title">Weather</h2>
 
                         <div id="weather-hero">
-                            <!-- <img id="weather-icon" src="assets/images/weather.svg"> -->
+                            <img id="weather-icon" src="assets/images/weather.svg">
                             <div id="weather-data">
                                 <div class="unit">CELSIUS</div>
                                 <div id="temp" class="temperature">27</div>
@@ -48,7 +48,7 @@
 
                         <div class="bottom">
                             <div class="item">
-                                <img src="/assets/images/wind.svg">
+                                <img src="assets/images/wind.svg">
                                 <div class="item-flex">
                                     <p id="wind-speed">wah</p>
                                     <span>Wind Speed</span>
@@ -129,27 +129,28 @@
 
                     <!-- Social Widget -->
                     <div id="social-widget" class="widget">
-                        <!-- <div class="social-icon"> -->
-                        <!--     <a href="https://github.com" target="_blank"> -->
-                        <!--         <img src="assets/images/github.png"> -->
-                        <!--     </a> -->
-                        <!-- </div> -->
-                        <!-- <div class="social-icon"> -->
-                        <!--     <a href="https://web.whatsapp.com" target="_blank"> -->
-                        <!--         <img src="assets/images/whatsapp.png"> -->
-                        <!--     </a> -->
-                        <!-- </div> -->
-                        <!-- <div class="social-icon"> -->
-                        <!--     <a href="https://instagram.com" target="_blank"> -->
-                        <!--         <img src="assets/images/instagram.png"> -->
-                        <!--     </a> -->
-                        <!-- </div> -->
-                        <!-- <div class="social-icon" title="Add New Social"> -->
-                        <!--     <a> -->
-                        <!--     <img src="assets/images/add_social.png"> -->
-                        <!--     </a> -->
-                        <!-- </div> -->
+                        <div class="social-icon">
+                            <a href="https://github.com" target="_blank">
+                                <img src="assets/images/github.png">
+                            </a>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://web.whatsapp.com" target="_blank">
+                                <img src="assets/images/whatsapp.png">
+                            </a>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://instagram.com" target="_blank">
+                                <img src="assets/images/instagram.png">
+                            </a>
+                        </div>
+                        <div class="social-icon" title="Add New Social">
+                            <a>
+                                <img src="assets/images/add_social.png">
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
                 <div id="grid-right">
@@ -200,7 +201,7 @@
                     <div id="todo-widget" class="widget">
                         <h2 class="widget-title">Todo</h2>
 
-                        <!-- <div id="todo-container"></div> -->
+                        <div id="todo-container"></div>
                         <button id="todo-add" class="btn"><img src="./assets/images/add.png" class="medium-icon invert" alt="+"></button>
                     </div>
 

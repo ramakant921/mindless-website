@@ -65,19 +65,8 @@ body {
     width: 40px;
 }
 
-.widget-wrapper {
-    width: auto;
-    /* width: 350px; */
-    /* max-width: 369px; */
-    aspect-ratio: 1/1;
-}
-
-/* .widget-wrapper-tall { */
-/*     min-height: 100%; */
-/*     /* max-height: 100vh; */ */
-/* } */
-
 .widget {
+    padding: 1rem;
     background-color: #000;
     border-radius: 20px;
     color: white;
@@ -87,15 +76,11 @@ body {
     align-items: center;
 }
 
-.widget-content {
-    padding: 18px; 
-    box-sizing: border-box;
-}
 
 .widget-title {
     text-align: center;
     font-size: 1.2rem;
-    margin: 0;
+    /* margin-top: 1rem; */
     margin-bottom: 0.5rem;
     font-weight: bold;
 }

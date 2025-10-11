@@ -130,9 +130,6 @@ body {
     /* Social links full width */
     #social-widget {
         display: none;
-        grid-column: 1 / -1;
-        min-height: 80px;
-        width: 100%;
     }
 
     /* Todo & Github take full viewport height minus container padding */

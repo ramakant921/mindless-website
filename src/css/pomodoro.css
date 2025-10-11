@@ -5,6 +5,8 @@
 /* Nothing Was Needed */
 #pomodoro-widget {
     position: relative;
+    display: grid;
+    place-items: center;
     /* background: #000000; */
     /* color: #fff; */
     /* width: 300px; */

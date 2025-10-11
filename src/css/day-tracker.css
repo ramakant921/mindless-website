@@ -24,7 +24,14 @@
 #legend-mid {background-color: var(--mid-day);}
 #legend-bad {background-color: var(--bad-day);}
 
+#tracker-widget {
+    display: grid;
+    place-items: center;
+}
+
 #day-tracker-grid {
+    margin: 0 auto;
+    width: 70%;
     display: grid;
     grid-template-rows: repeat(6, auto);
     grid-template-columns: repeat(7, 1fr);
@@ -39,8 +46,8 @@
     aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
-    width: 24px;
-    height: 24px;
+    max-width: 34px;
+    max-height: 34px;
     /* width: 14%; */
     border-radius: 6px;
     cursor: pointer;

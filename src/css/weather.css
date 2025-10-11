@@ -7,11 +7,6 @@
     box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
 }
 
-.heading h2 {
-    margin: 0;
-    font-size: 30px;
-}
-
 .cloud {
     color: #555555;
 }
@@ -31,11 +26,11 @@
 
 #weather-widget {
     text-align: center;
-
 }
 
 #weather-icon {
     margin-top: -1rem;
+    width: 70%;
     max-width: 240px;
 }
 

@@ -4,12 +4,12 @@ import { setting } from './settings.js';
 const emailInbox = document.getElementById("email-inbox");
 const githubInbox = document.getElementById("github-inbox");
 
-emailInbox.addEventListener("click", () => {
-    emailInbox.classList.remove("active");
-    githubInbox.classList.remove("active");
-
-    emailInbox.classList.add("active");
-});
+// emailInbox.addEventListener("click", () => {
+//     emailInbox.classList.remove("active");
+//     githubInbox.classList.remove("active");
+//
+//     emailInbox.classList.add("active");
+// });
 
 
 // check if user's spotify is authenticated

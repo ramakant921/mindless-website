@@ -19,15 +19,23 @@
     place-content: center;
     background-color: white;
     border-radius: 10px;
-    max-width: 170px;
+    width: 50%;
     aspect-ratio: 1 / 1;
-    margin-bottom: 12px;
     padding:0.5rem;
+    margin-bottom: 1rem;
 }
 
 #spotify-cover {
     width: 100%;
     border-radius: 10px;
+}
+
+#track, #artist {
+    width: 70%;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #track {
