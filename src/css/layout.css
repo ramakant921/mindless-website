@@ -63,10 +63,6 @@ body {
 }
 
 .square-widget {
-<<<<<<< HEAD
-    aspect-ratio: 1 / 1;
-    width: fit-content;
-=======
   aspect-ratio: 1 / 1;
   width: 100%;
   height: auto;
@@ -155,7 +151,6 @@ body {
     #container {
         padding: var(--grid-gap) 2rem;
     }
->>>>>>> 8b3a7b5466fd68b24339523cfe8ceb56c41d4bf4
 }
 
 /* Settings */
