@@ -15,6 +15,11 @@
     background: var(--disabled-day); 
 }
 
+.action-not-allowed {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 #legend-good {background-color: var(--good-day);}
 #legend-mid {background-color: var(--mid-day);}
 #legend-bad {background-color: var(--bad-day);}
@@ -34,8 +39,8 @@
     aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
-    max-width: 24px;
-    max-height: 24px;
+    width: 24px;
+    height: 24px;
     /* width: 14%; */
     border-radius: 6px;
     cursor: pointer;
@@ -43,6 +48,10 @@
 
 .day-cell img {
     width: 55%;
+}
+
+.today {
+    border: 2px solid white
 }
 
 #legends {
