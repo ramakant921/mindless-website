@@ -1,4 +1,11 @@
-/* variables */ 
+* {
+    /* reset default css settings */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* variables */
 :root {
     --grid-gap: 1rem;
     --widget-bg: black;
@@ -6,15 +13,18 @@
     --widget-border-radius: 25px;
 }
 
+body {
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 #container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    /* padding: var(--grid-gap); */
-    /* flex: 0 1 200px; */
-    /* size: ; */
-    /* padding: 7rem var(--grid-gap); */
-    padding: var(--grid-gap) 7rem;
+    width: min(100%, 1900px);
+    min-height: 100%;
+    padding: var(--grid-gap) clamp(1rem, 7vw, 7rem);
 }
 
 /* --------------- Grid --------------- */
@@ -23,8 +33,8 @@
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: var(--grid-gap);
 
-    /* width: 100%; */
-    /* height: 100%; */
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -32,18 +42,15 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: var(--grid-gap);
-    height: inherit;
-    width: inherit;
 }
 
 #todo-widget, #github-widget {
-    max-height: 100vh;
-    width: 100%; 
+    aspect-ratio: auto;
+    /* height: 100%; */
 }
 
 #social-widget {
-    /* height: auto; */
-    height: 3rem;
+    height: clamp(4rem, 4rem, 4rem);
     grid-column: 1 / span 2;
 }
 @media(max-width: 1440px){
@@ -56,8 +63,102 @@
 }
 
 .square-widget {
+<<<<<<< HEAD
     aspect-ratio: 1 / 1;
     width: fit-content;
+=======
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+}
+
+.widget {
+    width: 100%;
+    background-color: var(--widget-bg);
+    border-radius: var(--widget-border-radius);
+}
+
+/* Tablet Type Shit */
+@media (min-width: 668px) and (max-width: 1200px) {
+    #grid {
+        display: grid;
+        grid-template-columns: 1fr; 
+        gap: var(--grid-gap);
+        width: 100%;
+    }
+
+    #grid-left {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--grid-gap);
+    }
+
+    #grid-right {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--grid-gap);
+    }
+
+    #weather-widget,
+    #spotify-widget,
+    #tracker-widget,
+    #pomodoro-widget {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+    }
+
+    #social-widget {
+        display: none; 
+    }
+
+    /* #todo-widget, #github-widget { */
+    /*     height: calc(100vh - (var(--grid-gap) * 4)); */
+    /* } */
+}
+
+/* Mobile Layout */
+@media (max-width: 667px) {
+    #grid {
+        display: grid;
+        grid-template-columns: 1fr; /* single column */
+        gap: var(--grid-gap);
+    }
+
+    #grid-left,
+    #grid-right {
+        display: grid;
+        grid-template-columns: 1fr; /* stack everything vertically */
+        gap: var(--grid-gap);
+    }
+
+    /* Square widgets */
+    #weather-widget,
+    #spotify-widget,
+    #tracker-widget,
+    #pomodoro-widget {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+    }
+
+    /* Social links full width */
+    #social-widget {
+        display: none;
+        grid-column: 1 / -1;
+        min-height: 80px;
+        width: 100%;
+    }
+
+    /* Todo & Github take full viewport height minus container padding */
+    /* #todo-widget, */
+    /* #github-widget { */
+    /*     height: calc(100vh - 2rem);  */
+    /*     width: 100%; */
+    /* } */
+
+    #container {
+        padding: var(--grid-gap) 2rem;
+    }
+>>>>>>> 8b3a7b5466fd68b24339523cfe8ceb56c41d4bf4
 }
 
 /* Settings */
