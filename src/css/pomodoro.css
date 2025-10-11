@@ -4,7 +4,7 @@
 
 /* Nothing Was Needed */
 #pomodoro-widget {
-    /* position: relative; */
+    position: relative;
     /* background: #000000; */
     /* color: #fff; */
     /* width: 300px; */
@@ -16,8 +16,8 @@
 
 .circle {
     position: relative;
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 60%;
     margin: 15px auto;
 }
 

@@ -3,3 +3,7 @@ _____________TODO____________
 > Auto Refresh
 > Inline Huge Text 
 
+>> Weather-Widget
+> Different Icon Based On the Weather
+> Fix Humidity & Wind Cards
+

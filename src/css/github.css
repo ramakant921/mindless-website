@@ -4,7 +4,6 @@
     grid-template-rows: repeat(3, minmax(200px, 1fr));
     /* grid-template-rows: auto auto auto; */
     max-height: 100vh;
-
 }
 
 .github-block-title {

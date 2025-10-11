@@ -4,9 +4,10 @@
     justify-content: center;
     gap: 0.4rem;
     width: 100%;
-    padding: 3px 250px;
-    border-radius: 18px;
+    border-radius: 20px;
+    padding: 3px clamp(1rem, 8vw, 250px);
     background-color: black;
+    box-sizing: border-box;
 } 
 
 .social-icon {
@@ -28,4 +29,6 @@
 .social-icon img{
     width: 35px;
     height: 35px;
+    max-width: 36px;
+    max-height: 36px;
 }

@@ -57,7 +57,7 @@ function showSpotifyLogin() {
 }
 
 function displayCurrentTrack(track) {
-    const widget = document.getElementById("spotify-widget");
+    const widget = document.getElementById("spotify-widget-content");
     const coverWrapper = document.getElementById("cover-wrapper");
 
     const cover = document.createElement("img");

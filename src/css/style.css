@@ -5,6 +5,7 @@
     /* Reset Default Styling (cause it's always a trouble) */
     margin: 0;
     padding: 0;
+    color: white;
     box-sizing: border-box; /* something to do with box model (margin, padding, size) */
 }
 
@@ -27,10 +28,7 @@
 body {
     background: var(--bg-color);
     font-family: Inter, sans-serif;
-    max-width: 100vw;
-    max-height: 100vh;
-
-    cursor: none;
+    /* cursor: none; */
 }
 
 .login {
@@ -74,14 +72,12 @@ body {
     aspect-ratio: 1/1;
 }
 
-.widget-wrapper-tall {
-    min-height: 100%;
-    /* max-height: 100vh; */
-}
+/* .widget-wrapper-tall { */
+/*     min-height: 100%; */
+/*     /* max-height: 100vh; */ */
+/* } */
 
 .widget {
-    width: 100%;
-    height: 100%;
     background-color: #000;
     border-radius: 20px;
     color: white;
@@ -97,6 +93,7 @@ body {
 }
 
 .widget-title {
+    text-align: center;
     font-size: 1.2rem;
     margin: 0;
     margin-bottom: 0.5rem;
