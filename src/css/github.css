@@ -25,6 +25,8 @@
     /* max-height: 25vh; */
     /* margin-top: 1rem; */
     margin-bottom: 1rem;
+    overflow: auto;
+    
 }
 
 .git-section-title {
@@ -55,3 +57,20 @@
       gap: 6px;
       transition: background 0.2s;
 }
+
+.container{
+    display: flex;
+}
+    
+    #scrollbar1::-webkit-scrollbar{
+        width: 10px;
+    }
+    #scrollbar1::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: #e7e7e7;
+        border: 1px solid #cacaca;
+    }
+    #scrollbar1::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: #d55959;
+    }
