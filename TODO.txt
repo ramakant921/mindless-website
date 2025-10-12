@@ -2,11 +2,6 @@ _____________TODO____________
 >> Spotify-Widget
 > Auto Refresh
 
->> Weather-Widget
-> Different Icon Based On the Weather
-> Fix Humidity & Wind Cards
-
-
 
 > webpage the width of webpage to not scroll it.
 > Add icons option not working

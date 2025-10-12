@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="./css/layout.css">
         <!-- Scripts -->
         <script defer type="module" src="./js/brain.js"></script> 
+        <script defer type="module" src="./js/spotify.js"></script> 
         <script defer type="module" src="./js/dayTracker.js"></script>
         <script defer type="module" src="./js/weather.js"></script>
         <!-- <script defer type="module" src="./js/github.js"></script> -->
@@ -69,7 +70,9 @@
                         <div id="spotify-widget-content">
                             <h2 class="widget-title">Spotify</h2>
                             <p id="now-playing">Now Playing</p>
-                            <div id="cover-wrapper"></div>
+                            <div id="cover-wrapper"><img id="spotify-cover" src="./assets/images/nothingtoshow.png"></div>
+                            <p id="track"></p>
+                            <p id="artist"></p>
                         </div>
                         <button id="spotify-login" class="login">Login</button>
                     </div>

@@ -1,8 +1,8 @@
 :root {
     /* Variables */
     --good-day: #ffffff;
-    --mid-day: gray;
-    --bad-day: #555555;
+    --mid-day: #969696;
+    --bad-day: #5c5c5c;
     --vacant-day: #333333;
     --disabled-day: black;
 }
