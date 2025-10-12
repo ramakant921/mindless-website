@@ -1,10 +1,3 @@
-* {
-    /* reset default css settings */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* variables */
 :root {
     --grid-gap: 1rem;
@@ -46,24 +39,19 @@ body {
 
 #todo-widget, #github-widget {
     aspect-ratio: auto;
-    overflow-y: hidden;
-    /* max-height: calc(100vh - var(--grid-gap)); */
+    overflow-y: auto;
+    max-height: calc(100vh - var(--grid-gap) * 2);
+    min-height: 0;
 }
 
 #social-widget {
-    height: clamp(4rem, 4rem, 4rem);
+    height: clamp(3rem, 3.5rem, 4rem);
     grid-column: 1 / span 2;
 }
 
 @media(max-width: 1440px){
     body {
         font-size: 16px;
-    }
-    #social-widget{
-        display: none;
-        flex-grow: 0;
-        margin-left: auto;
-        margin-right: 1.5rem;
     }
 }
 
@@ -81,6 +69,10 @@ body {
 
 /* Tablet Type Shit */
 @media (min-width: 668px) and (max-width: 1200px) {
+    body {
+        overflow-y: scroll;
+    }
+
     #grid {
         display: grid;
         grid-template-columns: 1fr; 
@@ -111,24 +103,20 @@ body {
     #social-widget {
         display: none; 
     }
-
-    /* #todo-widget, #github-widget { */
-    /*     height: calc(100vh - (var(--grid-gap) * 4)); */
-    /* } */
 }
 
 /* Mobile Layout */
 @media (max-width: 667px) {
     #grid {
         display: grid;
-        grid-template-columns: 1fr; /* single column */
+        grid-template-columns: 1fr; 
         gap: var(--grid-gap);
     }
 
     #grid-left,
     #grid-right {
         display: grid;
-        grid-template-columns: 1fr; /* stack everything vertically */
+        grid-template-columns: 1fr;
         gap: var(--grid-gap);
     }
 
@@ -141,17 +129,9 @@ body {
         width: 100%;
     }
 
-    /* Social links full width */
     #social-widget {
         display: none;
     }
-
-    /* Todo & Github take full viewport height minus container padding */
-    /* #todo-widget, */
-    /* #github-widget { */
-    /*     height: calc(100vh - 2rem);  */
-    /*     width: 100%; */
-    /* } */
 
     #container {
         padding: var(--grid-gap) 2rem;
@@ -173,7 +153,6 @@ body {
     padding: 0.7rem;
     border-radius: 10px;
     background-color: var(--bg-color);
-    /* background-color: var(--section-color); */
 }
 
 #settings-inner {

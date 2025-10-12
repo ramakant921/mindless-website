@@ -5,8 +5,8 @@
     /* grid-template-rows: auto auto auto; */
     height: 100%;
     width: 100%;
-    /* max-height: 100vh; */
-    overflow-y: scroll;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .github-block-title {
