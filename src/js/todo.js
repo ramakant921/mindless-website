@@ -70,10 +70,11 @@ function addSection() {
 
     // Form Template
     const formTemplate = document.getElementById("input-form-template").content.cloneNode(true);
+    const form = formTemplate.querySelector("form");
 
     const formSubmit = formTemplate.querySelector("button"); 
     const formInput = formTemplate.querySelector("input"); 
-    formSubmit.addEventListener("click", (e) => setSectionTitle(e, uuid));
+    form.addEventListener("click", (e) => setSectionTitle(e, uuid));
 
     // Append Child
     const sectionTitle = sectionTemplate.querySelector(".section-title");
@@ -84,6 +85,19 @@ function addSection() {
     // Focus The Element At Last
     formInput.focus();
     formInput.select();
+
+    // Remove Form If Clicked Outside
+    const formEl = section.querySelector("form");
+    formEl.id = "input-form"
+    setTimeout(() => {
+        const outsideClickHandler = (event) => {
+            if (!formEl.contains(event.target)) {
+                removeInputForm(true);
+                document.removeEventListener("click", outsideClickHandler);
+            }
+        };
+        document.addEventListener("click", outsideClickHandler);
+    }, 0);
 }
 
 function setSectionTitle(e, uuid) {
@@ -128,14 +142,18 @@ function addTodo(e, todoElement=null) {
 
     // Form Template
     const formTemplate = document.getElementById("input-form-template").content.cloneNode(true);
-    formTemplate.querySelector("form").classList.add("margin-top");
+    const form = formTemplate.querySelector("form")
+    form.classList.add("margin-top");
 
     const formSubmit = formTemplate.querySelector("button"); 
     const formInput = formTemplate.querySelector("input"); 
     formInput.id = "todo-input";
     formInput.value = "Write a Task";
     formInput.classList.add("section-list-item");
-    formSubmit.addEventListener("click", (e) => setTodoList(e, todo));
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        setTodoList(e, todo)
+    });
 
     todo.appendChild(formTemplate);
 
@@ -143,6 +161,19 @@ function addTodo(e, todoElement=null) {
     formInput.focus();
     formInput.select();
     todo.scrollTo(0, todo.scrollHeight);
+
+    // Remove Form If Clicked Outside
+    const formEl = todo.querySelector("form");
+    formEl.id = "input-form"
+    setTimeout(() => {
+        const outsideClickHandler = (event) => {
+            if (!formEl.contains(event.target)) {
+                removeInputForm();
+                document.removeEventListener("click", outsideClickHandler);
+            }
+        };
+        document.addEventListener("click", outsideClickHandler);
+    }, 0);
 
     // Remove Input If User Doesn't wanna add todo
     // setTimeout(() => {
@@ -189,8 +220,13 @@ function removeTodoItem(sectionId, text, listItem) {
   localStorage.setItem("todo", JSON.stringify(sections));
 }
 
-function removeInputForm() {
+function removeInputForm(removeSection=false) {
     const formInput = document.getElementById("input-form");
+    if(removeSection){
+        const section = formInput.parentNode;
+        section.remove();
+    }
+
     if(formInput) formInput.remove();
 }
 

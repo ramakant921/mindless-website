@@ -8,7 +8,9 @@
 }
 
 #todo-container {
+    width: 100%;
     overflow-y: scroll;
+    margin-bottom: 1rem;
 }
 
 /* Section */
@@ -32,7 +34,7 @@
 
 .todo-list {
     overflow: scroll;
-    max-height: 145px;
+    /* max-height: 145px; */
 }
 
 .section-list-item {

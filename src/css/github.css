@@ -22,7 +22,7 @@
 }
 
 .section{
-    /* max-height: 25vh; */
+    max-height: 30vh;
     /* margin-top: 1rem; */
     margin-bottom: 1rem;
     overflow: auto;
