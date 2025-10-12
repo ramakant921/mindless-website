@@ -190,6 +190,6 @@ body {
     transition: all 0.5s ease-in-out;
 }
 
-#settings-inner img:hover {
+#settings-inner:hover img {
     transform: rotateZ(180deg);
 }
