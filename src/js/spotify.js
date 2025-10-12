@@ -50,7 +50,7 @@ function displayCurrentTrack(track) {
     const trackName = document.getElementById("track");
     const artist = document.getElementById("artist");
 
-    if(!track) {
+    if(!track || Object.keys(track).length === 0) {
         trackName.innerText = "Nothing";
         artist.innerText = "Zero Batte Sannata";
         return;
