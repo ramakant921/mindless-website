@@ -1,3 +1,9 @@
+#weather-widget {
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
 .heading{
     background: #111111;
     color: #ffffff;
@@ -15,12 +21,6 @@
     color: #555555;
     
 }
-@media(max-width:1440){
-    .cloud{
-       scroll-padding-left:12px ; 
-       flex-direction: column;
-    }
-}
 
 .unit {
     font-size: 15px;
@@ -30,18 +30,16 @@
 }
 
 .temperature {
-    font-size: 5rem;
+    font-size: clamp(2rem, 4vw, 5rem);
+    /* font-size: 5rem; */
+    /* font-size: 5vw; */
     font-weight: bold;
     margin-top: -30px;
 }
 
-#weather-widget {
-    text-align: center;
-}
-
 #weather-icon {
     margin-top: -1rem;
-    width: 70%;
+    width: 90%;
     max-width: 240px;
 }
 
@@ -68,6 +66,7 @@
 .bottom {
     display: flex;
     justify-content: space-between;
+    width: 80%;
     margin-top: 15px;
 }
 
@@ -91,4 +90,29 @@
     width: 30px;
     margin-bottom: 5px;
     margin-right: 0.5rem;
+}
+
+/* Media Queries */
+@media(max-width: 1700px){
+    #weather-icon {
+        width: 70%;
+    }
+
+    .temperature {
+        font-size: 4rem;
+    }
+
+    .bottom {
+        width: 90%;
+    }
+}
+
+@media(max-width: 1340px){
+    #weather-icon {
+        width: 60%;
+    }
+
+    .temperature {
+        font-size: 3rem;
+    }
 }

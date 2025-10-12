@@ -18,7 +18,16 @@
 }
 
 #todo-widget {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     font-size: 1.1rem;
+    overflow-y: auto;
+    /* max-height: 100vh; */
+}
+
+#todo-container {
+    overflow-y: scroll;
 }
 
 .todo-list {
@@ -71,6 +80,7 @@
 
 #input-form input {
     width: 100%;
+    color: black;
     padding: 0.5rem;
     font-weight: bold;
     border: none;

@@ -12,6 +12,17 @@ function displayWeather(data) {
     wind.innerText = data.wind.speed;
     humidity.innerText = data.main.humidity;
 
+    const weatherType = data.weather[0].main;
+    console.log(weatherType);
+    const weatherIcon = document.getElementById("weather-icon");
+    switch (weatherType) {
+        case "Clear":
+            weatherIcon.src = "../assets/images/sunny.png"
+            break;
+        case "Rain":
+            weatherIcon.src = "../assets/images/rainy.png"
+            break;
+    }
 }
 
 const options = {

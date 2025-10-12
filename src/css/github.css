@@ -1,9 +1,12 @@
 #github-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(200px, 1fr));
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+    /* grid-template-rows: repeat(3, minmax(200px, 1fr)); */
     /* grid-template-rows: auto auto auto; */
-    max-height: 100vh;
+    height: 100%;
+    width: 100%;
+    /* max-height: 100vh; */
+    overflow-y: scroll;
 }
 
 .github-block-title {
@@ -19,7 +22,8 @@
 }
 
 .section{
-    max-height: 25vh;
+    /* max-height: 25vh; */
+    /* margin-top: 1rem; */
     margin-bottom: 1rem;
 }
 

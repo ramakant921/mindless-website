@@ -1,7 +1,6 @@
 _____________TODO____________
 >> Spotify-Widget
 > Auto Refresh
-> Inline Huge Text 
 
 >> Weather-Widget
 > Different Icon Based On the Weather
