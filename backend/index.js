@@ -211,7 +211,7 @@ app.get('/github/inbox', (req, res) => {
 });
 
 // consider port as a communication channel where different services communicate 
-const PORT = 42069; // yamate kudasai
+const PORT = process.env.PORT || 42069; // yamate kudasai
 app.listen(PORT, () => {
     console.log(`Server Listening Like Google, Meta on port ${PORT}`);
     console.log(`FrontEnd:- http://localhost:${PORT}`);
