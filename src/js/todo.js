@@ -28,6 +28,15 @@ function loadData() {
         section.id = sectionObj.id;
         section.querySelector(".section-title").innerText = sectionObj.title;
 
+        // Delete Section Event Listener
+        const deleteSectionBtn = section.querySelector(".delete-todo-section");
+        deleteSectionBtn.addEventListener("click", () => {
+            // Remove from DOM
+            section.remove();
+
+            deleteSection(sectionObj.id);
+        });
+
         // Get todo list container
         const todoList = section.querySelector(".todo-list");
 
@@ -74,13 +83,22 @@ function addSection() {
 
     const formSubmit = formTemplate.querySelector("button"); 
     const formInput = formTemplate.querySelector("input"); 
-    form.addEventListener("click", (e) => setSectionTitle(e, uuid));
+    form.addEventListener("submit", (e) => setSectionTitle(e, uuid));
 
     // Append Child
     const sectionTitle = sectionTemplate.querySelector(".section-title");
     sectionTitle.replaceWith(formTemplate);
 
     sectionContainer.appendChild(section);
+
+    // Delete Section Event Listener
+    const deleteSectionBtn = section.querySelector(".delete-todo-section");
+    deleteSectionBtn.addEventListener("click", () => {
+        // Remove from DOM
+        section.remove();
+
+        deleteSection(uuid);
+    });
 
     // Focus The Element At Last
     formInput.focus();
@@ -103,7 +121,8 @@ function addSection() {
 function setSectionTitle(e, uuid) {
     e.preventDefault();
 
-    const todoContainer = e.target.parentNode.parentNode.querySelector(".todo-list");
+    const section = e.target.closest(".section");
+    const todoContainer = section.querySelector(".todo-list");
     const formInput = document.getElementById("input-form");
     const input = formInput.querySelector("#section-title-input");
     const title = input.value;
@@ -130,11 +149,10 @@ function setSectionTitle(e, uuid) {
 function addTodo(e, todoElement=null) {
     // Remove Previous Input Form
     removeInputForm();
-    // if(document.getElementById("input-form")) return
 
     let todo;
     if(e){
-        todo = e.target.parentNode.querySelector(".todo-list"); 
+        todo = e.target.closest(".section").querySelector(".todo-list");
     }
     else {
         todo = todoElement;
@@ -218,6 +236,12 @@ function removeTodoItem(sectionId, text, listItem) {
   const section = sections.find(obj => obj.id == sectionId);
   section.elements = section.elements.filter(t => t.trim() != text.trim());
   localStorage.setItem("todo", JSON.stringify(sections));
+}
+
+function deleteSection(uuid) {
+    let sections = JSON.parse(localStorage.getItem("todo")) || [];
+    sections = sections.filter(obj => obj.id !== uuid);
+    localStorage.setItem("todo", JSON.stringify(sections));
 }
 
 function removeInputForm(removeSection=false) {

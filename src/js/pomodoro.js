@@ -85,6 +85,7 @@ function togglePlayPauseButton() {
 }
                 
 function resetTimer() {
+    startPauseBtn.src = "../assets/images/play.png"
     clearInterval(countdownId);
     countdownId = null;
     isRunning = false;

@@ -1,6 +1,7 @@
 // Packages
 import express, { response } from 'express';
 import cors from 'cors';
+import path from "path";
 import querystring from 'querystring';
 import axios from 'axios';
 import bodyParser from 'body-parser';
@@ -135,7 +136,7 @@ app.get('/auth/google/status', (req, res) => {
 });
 
 app.get('/google/inbox', (req, res) => {
-    getGmailInbox(req)
+    getGmailInbox(req, res)
         .then(inbox => {
             // console.log("inbox: ", inbox);
             res.json(inbox);
