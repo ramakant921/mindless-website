@@ -1,15 +1,15 @@
-import { setting } from './settings.js';
+import { setting, backendURL} from './settings.js';
 
+console.log(backendURL)
 const activeTab = document.getElementById("git-inbox");
 
 init();
 activeTab.addEventListener("click", () => {
-    console.log("heeee");
     init();
 });
 
 // check if user's github is authenticated
-fetch(`http://127.0.0.1:${setting.port}/auth/github/status`, {
+fetch(`${backendURL}/auth/github/status`, {
     credentials: 'include'
 })
     .then(res => res.json())
@@ -40,7 +40,7 @@ function showGithubLogin() {
     loginBtn.style.display = "block";
 
     loginBtn.onclick = () => {
-        window.location.href = `http://localhost:${setting.port}/github/login`;
+        window.location.href = `${setting.backendURL}/github/login`;
     };
 }
 
