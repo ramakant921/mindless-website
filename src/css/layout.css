@@ -40,12 +40,13 @@ body {
 #todo-widget, #github-widget {
     aspect-ratio: auto;
     overflow-y: auto;
-    max-height: calc(100vh - var(--grid-gap) * 2);
+    max-height: min(calc(100vh - var(--grid-gap) * 2), 900px);
     min-height: 0;
+    height: 100%;
 }
 
 #social-widget {
-    height: clamp(3rem, 3.5rem, 4rem);
+    height: clamp(3rem, 3.5rem, 5rem);
     grid-column: 1 / span 2;
 }
 
