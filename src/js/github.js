@@ -33,13 +33,11 @@ function init() {
 
 function showGithubLogin() {
     const loginBtn = document.getElementById("github-login");
-    const repo = document.getElementById("github-repo");
-    const fork = document.getElementById("github-fork");
-    const inbox = document.getElementById("github-inbox");
+    const sections = document.querySelectorAll("#github-widget .section");
+    sections.forEach((section) => {
+        section.style.display = "none";
+    });
     loginBtn.style.display = "block";
-    repo.style.display = "none";
-    fork.style.display = "none";
-    inbox.style.display = "none";
 
     loginBtn.onclick = () => {
         window.location.href = `http://localhost:${setting.port}/github/login`;
@@ -109,10 +107,11 @@ function listForks(repos) {
 }
 
 function listInbox(inbox) {
-    inbox.map(notification => {
-        // Grab github-inbox section
-        const section = document.getElementById("github-inbox");
+    // Grab github-inbox section
+    const section = document.getElementById("github-inbox");
+    section.innerHTML = ""; // this is nasty but; we are badass
 
+    inbox.map(notification => {
         const block = document.createElement("div");
         block.classList.add("blocks");
 

@@ -9,15 +9,15 @@ fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
     if (data.authenticated) {
         // console.log("fetching spotify data");
         fetchCurrentTrack();
+
+        setInterval(() => {
+            fetchCurrentTrack();
+        }, 6969); // Fetch Spotify every 6969ms
     } else {
         // console.log("bruhhh login to spotify");
         showSpotifyLogin();
     }
 });
-
-setInterval(() => {
-    fetchCurrentTrack();
-}, 6969); // Fetch Spotify every 6969ms
 
 function fetchCurrentTrack() {
     fetch(`http://127.0.0.1:${setting.port}/spotify/currentTrack`, {

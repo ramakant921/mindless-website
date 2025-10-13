@@ -2,7 +2,7 @@
 const FULL_DASH_ARRAY = 283;
 
 // Grab Elements
-const startPauseBtn = document.getElementById("pomodoro-widget");
+const startPauseBtn = document.getElementById("play-pause");
 const dom_Minutes = document.getElementById("pomo-minutes");
 const dom_Seconds = document.getElementById("pomo-seconds");
 
@@ -24,8 +24,8 @@ let timeElapsed = (initialMinutes * 60) + initialSeconds;
 getInitialTime();
 
 startPauseBtn.addEventListener("click", () => {
-    console.log(isRunning);
     if(!isRunning){
+        startPauseBtn.src = "../assets/images/pause.png"
         countdownId = setInterval(() => {
             timeElapsed -= 1;
             if(timeElapsed <= 0) {
@@ -63,6 +63,7 @@ startPauseBtn.addEventListener("click", () => {
     }
 
     else {
+        startPauseBtn.src = "../assets/images/play.png"
         clearInterval(countdownId);
         countdownId=null;
     }
@@ -77,6 +78,11 @@ function updateTimeVariables (minutes, seconds) {
     totalTime = (initialMinutes * 60) + initialSeconds;
     timeElapsed = (initialMinutes * 60) + initialSeconds;
 }
+
+function togglePlayPauseButton() {
+    const btn = document.getElementById("play-pause");
+    btn.src = "../assets/images/playing.png";
+}
                 
 function resetTimer() {
     clearInterval(countdownId);
@@ -85,24 +91,21 @@ function resetTimer() {
     timeElapsed = totalTime;
     updateTimeVariables(initialMinutes, initialSeconds);
     displayTime(initialMinutes, initialSeconds);
-    setTimeElapsedDasharray();
+    setTimeout(() => {
+        setTimeElapsedDasharray(true);
+    },1000);
 }
 
 // SVG Animation
-// function calculateTimeFraction() {
-//     let fraction = 1 - timeElapsed / totalTime; 
-//     return Math.max(0.0001, Math.min(1, fraction));
-// }
-
 function calculateTimeFraction() {
   const rawTimeFraction = 1 - timeElapsed / totalTime;
   return rawTimeFraction - (1 / totalTime) * (1 - rawTimeFraction);
 }
 
-function setTimeElapsedDasharray() {
+function setTimeElapsedDasharray(reset=false) {
   const dash = (FULL_DASH_ARRAY * calculateTimeFraction()).toFixed(2);
   document.getElementById("base-timer-path-remaining")
-    .setAttribute("stroke-dasharray", `${dash} ${FULL_DASH_ARRAY}`);
+    .setAttribute("stroke-dasharray", `${reset ? 0 : dash} ${FULL_DASH_ARRAY}`);
 }
 
 function updatePomoTime() {
@@ -132,6 +135,7 @@ function getInitialTime () {
 function showOptions(e) {
     console.log(e);
     const options = document.getElementById("pomodoro-option");
+    const form = document.querySelector("#pomodoro-option form");
     
     // options.style.top = e.layerY + "px";
     // options.style.left = e.layerX + "px";
@@ -139,7 +143,15 @@ function showOptions(e) {
     options.style.left = e.clientX + "px";
     options.style.display = "flex";
 
+
     e.stopPropagation(); // make sure it doesn't shy right away
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        updatePomoTime();
+        hideOptions();
+    });
+
     const outsideClickHandler = (event) => {
         if (!options.contains(event.target)) {
             hideOptions();

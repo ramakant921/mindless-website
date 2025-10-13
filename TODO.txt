@@ -1,11 +1,9 @@
 _____________TODO____________
->> Spotify-Widget
-> Auto Refresh
 
+>> Mr.R 
+> Add icons option not working 
 
-> webpage the width of webpage to not scroll it.
-> Add icons option not working
+>> Zalos
 > Pomodoro setting changes
 > pomodoro play pause option
-> aur todo mein list add karne pe webpage ke width badh rahi vo nahi honi chahiya
 > aur todo ko blank chhodne pe vo space le raha na ke remove ho raha
