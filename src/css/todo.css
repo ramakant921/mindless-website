@@ -5,6 +5,7 @@
     font-size: 1.1rem;
     overflow-y: auto;
     min-height: 0;
+    
 }
 
 #todo-container {
@@ -12,6 +13,7 @@
     overflow-y: scroll;
     margin-bottom: 1rem;
 }
+
 
 /* Section */
 .todo-add-btn {
@@ -78,6 +80,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    
 }
 
 #input-form input {
@@ -115,3 +118,4 @@
 .todo-list li:hover {
     background: #333;
 }
+
