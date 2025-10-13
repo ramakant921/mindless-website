@@ -108,17 +108,18 @@ body {
 
 /* Mobile Layout */
 @media (max-width: 667px) {
-    #grid {
-        display: grid;
-        grid-template-columns: 1fr; 
+     #grid {
+        display: flex;
+        flex-direction: column;
         gap: var(--grid-gap);
     }
 
     #grid-left,
     #grid-right {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: var(--grid-gap);
+        width: 100%;
     }
 
     /* Square widgets */
@@ -130,8 +131,9 @@ body {
         width: 100%;
     }
 
-    #social-widget {
-        display: none;
+    #social-widget,
+    #settings {
+        display: none !important;
     }
 
     #container {
