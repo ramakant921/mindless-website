@@ -4,7 +4,6 @@
     /* Reset Default Styling (cause it's always a trouble) */
     margin: 0;
     padding: 0;
-    color: white;
     box-sizing: border-box; /* something to do with box model (margin, padding, size) */
 }
 

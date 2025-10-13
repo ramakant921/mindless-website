@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Mindless Website</title>
+        <!-- Logo -->
+        <link rel="icon" href="./assets/images/logo.ico" type="image/x-icon">
         <!-- Styles -->
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/spotify.css">
@@ -121,12 +123,13 @@
                                 <span>:</span>
                                 <span id="pomo-seconds">00</span>
                             </div>
+
                         </div>
 
                         <div class="bottom-row">
                             <div class="icon" id="pomo-settings"><img src="assets/images/setting.svg" width="24px" height="24px" alt=""></div>
-                            <div>Work</div>
-                            <div>Min</div>
+                            <img id="play-pause" class="invert" src="./assets/images/play.png" alt="Pause">
+                            <div class="bold">Min</div>
                         </div>
                     </div>
 
@@ -232,11 +235,16 @@
 
         <!-- Pomodoro Options -->
         <div id="pomodoro-option">
+            <form>
+            <div>
             <span class="analog">M</span>
-            <input id="pomo-opt-minutes" class="time" value="12">
+            <input id="pomo-opt-minutes" class="time" type="number" value="12">
             <span class="colon">:</span>
-            <input id="pomo-opt-seconds" class="time" value="33">
+            <input id="pomo-opt-seconds" class="time" type="number" value="33">
             <span class="analog">S</span>
+            </div>
+            <button id="pomo-option-submit" class="btn" type="submit">Save</button>
+            </form>
         </div>
 
         <!-- Templates -->

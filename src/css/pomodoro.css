@@ -5,8 +5,8 @@
 /* Nothing Was Needed */
 #pomodoro-widget {
     position: relative;
-    display: grid;
-    place-items: center;
+    /* display: grid; */
+    /* place-items: center; */
     /* background: #000000; */
     /* color: #fff; */
     /* width: 300px; */
@@ -20,12 +20,11 @@
     position: relative;
     width: 60%;
     height: 60%;
-    margin: 15px auto;
+    margin: 1rem auto;
 }
 
 #timer {
     position: absolute;
-    display: flex;
     top: 50%;
     left: 50%;
     gap: 3px;
@@ -38,9 +37,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
     margin-top: 10px;
     padding: 0 10px;
     font-size: 14px;
+}
+
+.bottom-row .bold {
+    font-weight: bold;
 }
 
 .icon {
@@ -52,8 +56,8 @@
 /* Svg Animation  */
 .pomo-content {
     position: relative;
-    height: 300px;
-    width: 300px;
+    /* height: 300px; */
+    /* width: 300px; */
 }
 
 .base-timer_circle {
@@ -82,10 +86,16 @@
     transform: scaleX(-1);
 }
 
+#play-pause {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 /* Pomodoro Option */
 #pomodoro-option{
     position: absolute;
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     display: none;
     justify-content: center;
     align-items: center;
@@ -99,12 +109,34 @@
     font-weight: bold;
 }
 
+#pomodoro-option div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#pomodoro-option input {
+    outline: none;
+    border: none;
+    margin: 0 0.5rem;
+}
+
+#pomo-option-submit {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .analog {
     font-size: 1.5rem;
 }
 
 .time {
     display: inline;
+    width: 5rem;
     background: black;
     font-size: 1rem;
     color: white;
