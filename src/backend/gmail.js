@@ -145,7 +145,7 @@ export async function refreshGmailAccessToken(res, refresh_token) {
     const data = response.data;
 
     // Update cookies
-    setTokenCookies(res, {
+    setGoogleTokenCookies(res, {
         access_token: data.access_token,
         refresh_token: refresh_token, 
         expires_in: data.expires_in,
@@ -154,7 +154,7 @@ export async function refreshGmailAccessToken(res, refresh_token) {
     return data.access_token;
 }
 
-export async function getGmailInbox(req) {
+export async function getGmailInbox(req, res) {
     const tokens = retrieveGoogleTokens(req); 
 
     if (!tokens.access_token || isGmailAccessTokenExpired(tokens)) {
