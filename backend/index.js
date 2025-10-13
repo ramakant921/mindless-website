@@ -21,7 +21,7 @@ const redirect_uri = 'http://127.0.0.1:42069/auth/spotify/callback';
 
 // server init
 const app = express(); // express let's us create and run server
-app.use(express.static('../'));
+app.use(express.static('../src'));
 // CORS: allows to fetch api (very nasty error, remember it)
 app.use(bodyParser.json());
 app.use(
@@ -39,7 +39,7 @@ app.use(cors({
 // if we hit them they will do their respec. work
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('../index.html'));
+    res.sendFile(path.resolve('../src/index.html'));
 })
 
 app.get('/spotify/login', (req, res) => {
