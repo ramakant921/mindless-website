@@ -1,15 +1,13 @@
 import { setting } from './settings.js';
 
 const activeTab = document.getElementById("email-inbox");
-init();
 activeTab.addEventListener("click", () => {
-    console.log("heeee");
+    console.log("gmail accessed");
     init();
 });
 
 function init(){
-    console.log(activeTab);
-    if(activeTab.classList.contains("active")) {
+    // if(activeTab.classList.contains("active")) {
         // check if user's google is authenticated
         fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
             credentials: 'include'
@@ -18,27 +16,25 @@ function init(){
             .then(data => {
                 if (data.authenticated) {
                     console.log("fetching google data");
-                    getGmailInbox();
+                    getEmailInbox();
                 } else {
                     console.log("bruhhh login to google");
                     showEmailLogin();
                 }
             });
-    }
+    // }
 }
 
 function showEmailLogin() {
     const loginBtn = document.getElementById("email-login");
-    const inbox = document.getElementById("github-inbox");
     loginBtn.style.display = "block";
 
     loginBtn.onclick = () => {
         window.location.href = `http://localhost:${setting.port}/google/login`;
     };
 }
-console.log(`http://localhost:${setting.port}/google/login`)
 
-function getGmailInbox(){
+function getEmailInbox(){
     console.log("hey");
     fetch(`http://127.0.0.1:${setting.port}/google/inbox`, {
         method: 'GET',
@@ -52,10 +48,11 @@ function getGmailInbox(){
 }
 
 function listGmailInbox(inbox) {
-    inbox.map(notification => {
-        // Grab gmail-inbox section
-        const section = document.getElementById("github-inbox");
+    // Grab gmail-inbox section
+    const section = document.getElementById("github-inbox");
+    section.innerHTML = ""; // this is nasty but; we are badass
 
+    inbox.map(notification => {
         const block = document.createElement("div");
         block.classList.add("blocks");
 

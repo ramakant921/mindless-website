@@ -22,11 +22,13 @@
 }
 
 .section{
-    max-height: 30vh;
     /* margin-top: 1rem; */
     margin-bottom: 1rem;
     overflow: auto;
-    
+}
+
+.github-section {
+    max-height: 30vh;
 }
 
 .git-section-title {
