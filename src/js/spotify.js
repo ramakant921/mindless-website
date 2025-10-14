@@ -1,7 +1,7 @@
-import { setting } from './settings.js';
+import { setting, backendURL } from './settings.js';
 
 // check if user's spotify is authenticated
-fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
+fetch(`${backendURL}/auth/status`, {
     credentials: 'include'
 })
 .then(res => res.json())
@@ -20,7 +20,8 @@ fetch(`http://127.0.0.1:${setting.port}/auth/status`, {
 });
 
 function fetchCurrentTrack() {
-    fetch(`http://127.0.0.1:${setting.port}/spotify/currentTrack`, {
+
+    fetch(`${backendURL}/spotify/currentTrack`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -41,7 +42,7 @@ function showSpotifyLogin() {
     coverWrapper.style.display = "none";
 
     loginBtn.onclick = () => {
-        window.location.href = `http://localhost:${setting.port}/spotify/login`;
+        window.location.href = setting.prod ? `${backendURL}/spotify/login` : `http://localhost:${setting.port}/spotify/login`;
     };
 }
 

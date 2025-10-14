@@ -1,6 +1,7 @@
 // Packages
 import express, { response } from 'express';
 import cors from 'cors';
+import Utils from './utils.js';
 import path from "path";
 import querystring from 'querystring';
 import axios from 'axios';
@@ -17,27 +18,26 @@ const weather_api = process.env.WEATHER_API;
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-const redirect_uri = 'http://127.0.0.1:42069/auth/spotify/callback';
+const redirect_uri = Utils.redirectURL("spotify");
 
 // server init
 const app = express(); // express let's us create and run server
 app.use(express.static('../src'));
-// CORS: allows to fetch api (very nasty error, remember it)
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
         extended: true,
     }),
 );
+// CORS: allows to fetch api (very nasty error, remember it)
 app.use(cors({
-    origin: ['http://localhost:42069', 'http://127.0.0.1:42069'],
+    origin: ['http://localhost:42069', 'http://127.0.0.1:42069','https://mindless-dashboard.web.app', 'https://backup-mindless-website.onrender.com'],
   credentials: true
 }));
 
 // So basically this is our backend server
 // and all the app.get listed below are endpoints
 // if we hit them they will do their respec. work
-
 app.get('/', (req, res) => {
     res.sendFile(path.resolve('../src/index.html'));
 })
@@ -63,7 +63,7 @@ app.get("/auth/spotify/callback", async (req, res) => {
 
   if (state === null) {
     return res.redirect(
-      "/#" +
+        `${Utils.frontendURL()}/#` +
         querystring.stringify({
           error: "state_mismatch",
         })
@@ -91,7 +91,7 @@ app.get("/auth/spotify/callback", async (req, res) => {
     const { access_token, refresh_token, expires_in } = response.data;
     setTokenCookies(res, {access_token, refresh_token, expires_in});
 
-    res.redirect('/');
+    res.redirect(Utils.frontendURL());
 
   } catch (error) {
     console.error(error.response?.data || error.message);
@@ -153,8 +153,6 @@ app.post('/weather', async (req, res) => {
         );
 
         res.json( response.data);
-        console.log(response.data)
-        // res.send(response.data);
     }
     catch (error) {
         console.error(error.response?.data || error.message);

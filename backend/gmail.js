@@ -1,13 +1,13 @@
 import axios from "axios";
+import Utils from "./utils.js";
 import cookie from "cookie";
 import dotenv from 'dotenv'; // load .env to access our tokens 
-import { access } from "fs";
 import querystring from 'querystring';
 dotenv.config();
 
 const client_id = process.env.GOOGLE_CLIENT_ID;
 const client_secret = process.env.GOOGLE_CLIENT_SECRET;
-const redirect_uri = 'http://127.0.0.1:42069/auth/google/callback';
+const redirect_uri = Utils.redirectURL("gmail");
 
 // for prod
 // const cookieOptions = {
@@ -50,7 +50,7 @@ export async function gmailCallback(req, res){
 
     if (state === null) {
         return res.redirect(
-            "/#" +
+            `${Utils.frontendURL()}/#` +
             querystring.stringify({
                 error: "state_mismatch",
             })
@@ -73,7 +73,7 @@ export async function gmailCallback(req, res){
         setGoogleTokenCookies(res, { access_token, refresh_token, expires_in });
         console.log(response.data)
 
-        res.redirect('/');
+        res.redirect(Utils.frontendURL());
 
     } catch (error) {
         console.error(error.response?.data || error.message);

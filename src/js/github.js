@@ -40,12 +40,12 @@ function showGithubLogin() {
     loginBtn.style.display = "block";
 
     loginBtn.onclick = () => {
-        window.location.href = `${setting.backendURL}/github/login`;
+        window.location.href = setting.prod ? `${backendURL}/github/login` : `http://localhost:${setting.port}/github/login`;
     };
 }
 
 function getGithubRepos(){
-    fetch(`http://127.0.0.1:${setting.port}/github/repos`, {
+    fetch(`${backendURL}/github/repos`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -56,7 +56,7 @@ function getGithubRepos(){
 }
 
 function getGithubForks(){
-    fetch(`http://127.0.0.1:${setting.port}/github/forks`, {
+    fetch(`${backendURL}/github/forks`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -67,7 +67,7 @@ function getGithubForks(){
 }
 
 function getGithubInbox(){
-    fetch(`http://127.0.0.1:${setting.port}/github/inbox`, {
+    fetch(`${backendURL}/github/inbox`, {
         method: 'GET',
         credentials: 'include'
     })

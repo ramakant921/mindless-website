@@ -1,4 +1,4 @@
-import { setting } from './settings.js';
+import { setting, backendURL } from './settings.js';
 
 function displayWeather(data) {
     const temp = document.getElementById("temp");
@@ -34,12 +34,8 @@ const options = {
 async function success(pos) {
     const crd = pos.coords;
 
-    // console.log("Your current position is:");
-    // console.log(`Latitude : ${crd.latitude}`);
-    // console.log(`Longitude: ${crd.longitude}`);
-    // console.log(`More or less ${crd.accuracy} meters.`);
-
-    fetch(`http://127.0.0.1:${setting.port}/weather`, {
+    const endpoint = backendURL;
+    fetch(`${endpoint}/weather`, {
         method: "POST",
         body: JSON.stringify({lat: crd.latitude, long: crd.longitude}),
         headers: {
@@ -50,10 +46,6 @@ async function success(pos) {
         .then(data => {
             displayWeather(data);
         });
-
-    // const data = await weatherRes.text();
-    // console.log(data);
-    // console.log(weatherRes);
 }
 
 function error(err) {
