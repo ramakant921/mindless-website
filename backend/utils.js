@@ -8,10 +8,17 @@ class Utils {
 
   static frontendURL() {
     if (this.isProd()) {
-
       return process.env.FRONTEND_URL_PROD || 'https://mindless-dashboard.web.app';
     } else {
-      return process.env.FRONTEND_URL_DEV || 'http://localhost:42069';
+      return process.env.FRONTEND_URL_DEV || 'http://127.0.0.1:42069';
+    }
+  }
+
+  static backendURL() {
+    if (this.isProd()) {
+      return 'https://backup-mindless-website.onrender.com';
+    } else {
+      return 'http://127.0.0.1:42069';
     }
   }
 

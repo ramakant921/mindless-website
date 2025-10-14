@@ -42,7 +42,8 @@ function showSpotifyLogin() {
     coverWrapper.style.display = "none";
 
     loginBtn.onclick = () => {
-        window.location.href = setting.prod ? `${backendURL}/spotify/login` : `http://localhost:${setting.port}/spotify/login`;
+        const origin = encodeURIComponent(window.location.origin);
+        window.location.href = `${backendURL}/spotify/login?origin=${origin}`;
     };
 }
 

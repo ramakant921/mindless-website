@@ -40,7 +40,7 @@ function showGithubLogin() {
     loginBtn.style.display = "block";
 
     loginBtn.onclick = () => {
-        window.location.href = setting.prod ? `${backendURL}/github/login` : `http://localhost:${setting.port}/github/login`;
+        window.location.href = `${backendURL}/github/login`;
     };
 }
 

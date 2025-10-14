@@ -50,7 +50,7 @@ export async function gmailCallback(req, res){
 
     if (state === null) {
         return res.redirect(
-            `${Utils.frontendURL()}/#` +
+            "/#" +
             querystring.stringify({
                 error: "state_mismatch",
             })
@@ -73,7 +73,7 @@ export async function gmailCallback(req, res){
         setGoogleTokenCookies(res, { access_token, refresh_token, expires_in });
         console.log(response.data)
 
-        res.redirect(Utils.frontendURL());
+        res.redirect('/');
 
     } catch (error) {
         console.error(error.response?.data || error.message);

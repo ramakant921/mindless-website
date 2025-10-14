@@ -1,4 +1,4 @@
-import { setting } from './settings.js';
+import { setting, backendURL } from './settings.js';
 
 const activeTab = document.getElementById("email-inbox");
 activeTab.addEventListener("click", () => {
@@ -9,7 +9,7 @@ activeTab.addEventListener("click", () => {
 function init(){
     // if(activeTab.classList.contains("active")) {
         // check if user's google is authenticated
-        fetch(`http://127.0.0.1:${setting.port}/auth/google/status`, {
+        fetch(`${backendURL}/auth/google/status`, {
             credentials: 'include'
         })
             .then(res => res.json())
@@ -30,13 +30,13 @@ function showEmailLogin() {
     loginBtn.style.display = "block";
 
     loginBtn.onclick = () => {
-        window.location.href = `http://localhost:${setting.port}/google/login`;
+        window.location.href = `${backendURL}/google/login`;
     };
 }
 
 function getEmailInbox(){
     console.log("hey");
-    fetch(`http://127.0.0.1:${setting.port}/google/inbox`, {
+    fetch(`${backendURL}/google/inbox`, {
         method: 'GET',
         credentials: 'include'
     })

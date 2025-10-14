@@ -43,17 +43,17 @@ app.get('/', (req, res) => {
 })
 
 app.get('/spotify/login', (req, res) => {
-    // let state = generateRandomString(16);
+    const origin = req.query.origin;
+    // [Warning]: generate random state everytime
     let state = "thcehnwhetpnegtr";
     let scope = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state';
-
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
             client_id: client_id,
             scope: scope,
             redirect_uri: redirect_uri,
-            state: state
+            state: state + '|' + origin 
         }));
 });
 
@@ -63,12 +63,15 @@ app.get("/auth/spotify/callback", async (req, res) => {
 
   if (state === null) {
     return res.redirect(
-        `${Utils.frontendURL()}/#` +
+        `/#` +
         querystring.stringify({
           error: "state_mismatch",
         })
     );
   }
+
+    // const parts = state.split('|');
+    // const origin = parts[1] ? decodeURIComponent(parts[1]) : null;
 
   try {
     const response = await axios.post(
@@ -91,7 +94,8 @@ app.get("/auth/spotify/callback", async (req, res) => {
     const { access_token, refresh_token, expires_in } = response.data;
     setTokenCookies(res, {access_token, refresh_token, expires_in});
 
-    res.redirect(Utils.frontendURL());
+    // res.redirect(origin);
+    res.redirect('/');
 
   } catch (error) {
     console.error(error.response?.data || error.message);

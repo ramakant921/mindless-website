@@ -49,7 +49,7 @@ export async function githubCallback(req, res){
 
     if (state === null) {
         return res.redirect(
-            `${Utils.frontendURL()}/#` +
+            "/#" +
             querystring.stringify({
                 error: "state_mismatch",
             })
@@ -76,7 +76,7 @@ export async function githubCallback(req, res){
         const { access_token } = response.data;
         setGithubTokenCookies(res, access_token);
 
-        res.redirect(Utils.frontendURL());
+        res.redirect('/');
 
     } catch (error) {
         console.error(error.response?.data || error.message);

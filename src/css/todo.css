@@ -115,7 +115,7 @@
     display: none;
 }
 
-#todo-input {
+#todo-input input{
     color: white;
 }
 

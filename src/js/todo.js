@@ -107,15 +107,15 @@ function addSection() {
     // Remove Form If Clicked Outside
     const formEl = section.querySelector("form");
     formEl.id = "input-form"
-    setTimeout(() => {
-        const outsideClickHandler = (event) => {
-            if (!formEl.contains(event.target)) {
-                removeInputForm(true);
-                document.removeEventListener("click", outsideClickHandler);
-            }
-        };
-        document.addEventListener("click", outsideClickHandler);
-    }, 0);
+    // setTimeout(() => {
+    //     const outsideClickHandler = (event) => {
+    //         if (!formEl.contains(event.target)) {
+    //             removeInputForm(true);
+    //             document.removeEventListener("click", outsideClickHandler);
+    //         }
+    //     };
+    //     document.addEventListener("click", outsideClickHandler);
+    // }, 0);
 }
 
 function setSectionTitle(e, uuid) {
@@ -166,6 +166,7 @@ function addTodo(e, todoElement=null) {
     const formSubmit = formTemplate.querySelector("button"); 
     const formInput = formTemplate.querySelector("input"); 
     formInput.id = "todo-input";
+    formInput.style.color = "white";
     formInput.value = "Write a Task";
     formInput.classList.add("section-list-item");
     form.addEventListener("submit", (e) => {
@@ -183,15 +184,15 @@ function addTodo(e, todoElement=null) {
     // Remove Form If Clicked Outside
     const formEl = todo.querySelector("form");
     formEl.id = "input-form"
-    setTimeout(() => {
-        const outsideClickHandler = (event) => {
-            if (!formEl.contains(event.target)) {
-                removeInputForm();
-                document.removeEventListener("click", outsideClickHandler);
-            }
-        };
-        document.addEventListener("click", outsideClickHandler);
-    }, 0);
+    // setTimeout(() => {
+    //     const outsideClickHandler = (event) => {
+    //         if (!formEl.contains(event.target)) {
+    //             removeInputForm();
+    //             document.removeEventListener("click", outsideClickHandler);
+    //         }
+    //     };
+    //     document.addEventListener("click", outsideClickHandler);
+    // }, 0);
 
     // Remove Input If User Doesn't wanna add todo
     // setTimeout(() => {

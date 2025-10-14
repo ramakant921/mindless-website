@@ -34,8 +34,7 @@ const options = {
 async function success(pos) {
     const crd = pos.coords;
 
-    const endpoint = backendURL;
-    fetch(`${endpoint}/weather`, {
+    fetch(`${backendURL}/weather`, {
         method: "POST",
         body: JSON.stringify({lat: crd.latitude, long: crd.longitude}),
         headers: {
